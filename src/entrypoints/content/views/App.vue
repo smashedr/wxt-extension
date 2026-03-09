@@ -44,12 +44,13 @@ function handleKeyboard(e: KeyboardEvent) {
     return
   }
   if (['KeyT'].includes(e.code)) {
+    console.log('Pressed T')
     toggleIcon()
   } else if (['KeyE'].includes(e.code)) {
-    console.log('The E')
+    console.log('Pressed E')
     chrome.runtime.sendMessage('openPopup')
   } else if (['KeyR'].includes(e.code)) {
-    console.log('The R')
+    console.log('Pressed R')
     const result = getOwnerRepo(window.location.href)
     console.log('result:', result)
     if (result) {
@@ -72,9 +73,9 @@ function navigateTo(url: string): void {
 }
 
 onMounted(() => {
-  console.debug('onMounted')
+  // console.debug('onMounted')
   getOptions().then((options) => {
-    console.debug('options:', options)
+    // console.debug('options:', options)
     if (options.siteIcon) {
       toggleIcon()
     }

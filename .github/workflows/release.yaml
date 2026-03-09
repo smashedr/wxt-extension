@@ -4,6 +4,7 @@ on:
   release:
     types: [published]
 
+# NOTE: the env is only used for publishing
 env:
   PACKAGE_NAME: wxt_extension
   CHROME_ID: CHANGE_ME

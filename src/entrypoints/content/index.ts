@@ -1,8 +1,6 @@
 import { createApp } from 'vue'
 import App from './views/App.vue'
 
-console.log('%c github-extension: content/index.ts', 'color: Khaki')
-
 /**
  * Mount the Vue app to the DOM.
  */
@@ -17,7 +15,7 @@ function mountApp() {
 export default defineContentScript({
   matches: ['*://*/*'],
   main() {
-    console.log('Hello content.')
+    console.log('%c wxt-extension: content/index.ts', 'color: Lime')
     mountApp()
   },
 })

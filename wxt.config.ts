@@ -24,7 +24,7 @@ export default defineConfig({
 
     return {
       icons,
-      homepage_url: 'https://github.com/smashedr/github-extension',
+      homepage_url: 'https://github.com/smashedr/wxt-extension',
       permissions: ['contextMenus', 'storage'],
       host_permissions: ['*://*/*'],
 
