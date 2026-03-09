@@ -10,6 +10,7 @@ import PanelHeader from '@/components/PanelHeader.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import PanelFooter from '@/components/PanelFooter.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
+import OptionsForm from '@/components/OptionsForm.vue'
 
 async function windowResize() {
   const size = { panelWidth: window.outerWidth, panelHeight: window.outerHeight }
@@ -44,6 +45,7 @@ useTitle('Panel')
   </main>
 
   <footer class="flex-shrink-0">
+    <OptionsForm :close-window="true" :compact="true" class="p-2" />
     <PanelFooter />
   </footer>
 
