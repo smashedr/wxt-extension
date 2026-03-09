@@ -1,0 +1,39 @@
+{
+  "name": "wxt-vue-starter",
+  "description": "WXT Vue3 Starter Template.",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:ff": "wxt -b firefox --mv3",
+    "build": "wxt build",
+    "build:ff": "wxt build -b firefox --mv3",
+    "zip": "wxt zip",
+    "zip:ff": "wxt zip -b firefox --mv3",
+    "clean": "rm -rf .output",
+    "tsc": "vue-tsc --noEmit",
+    "prettier:check": "npx prettier --check .",
+    "prettier:write": "npx prettier --write .",
+    "lint:web-ext": "npm run build:ff && npx web-ext lint --source-dir .output/firefox-mv3 --self-hosted",
+    "package": "npm run tsc && npm run zip && npm run zip:ff",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "vue": "^3.5.29"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@types/bootstrap": "^5.2.10",
+    "@types/chrome": "^0.1.37",
+    "@types/firefox-webext-browser": "^143.0.0",
+    "@wxt-dev/module-vue": "^1.0.3",
+    "bootstrap": "^5.3.8",
+    "prettier": "^3.8.1",
+    "sass": "^1.97.3",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.2.5",
+    "web-ext": "^9.4.0",
+    "wxt": "^0.20.18"
+  }
+}
