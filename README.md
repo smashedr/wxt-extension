@@ -29,8 +29,12 @@ WXT Vue3 Starter Template.
 
 ## Install
 
+> [!WARNING]  
+> Note: Until published you must manually download and install a
+> [release](https://github.com/smashedr/wxt-extension/releases).
+
 [![Chrome](https://raw.githubusercontent.com/smashedr/logo-icons/master/browsers/chrome_48.png)](https://chromewebstore.google.com/detail/ifefifghpkllfibejafbakmflidjcjfp)
-[![Firefox](https://raw.githubusercontent.com/smashedr/logo-icons/master/browsers/firefox_48.png)](https://github.com/smashedr/wxt-extension/releases/latest/download/github_extension-firefox.xpi)
+[![Firefox](https://raw.githubusercontent.com/smashedr/logo-icons/master/browsers/firefox_48.png)](https://github.com/smashedr/wxt-extension/releases/latest/download/wxt-extension-firefox.xpi)
 [![Edge](https://raw.githubusercontent.com/smashedr/logo-icons/master/browsers/edge_48.png)](https://chromewebstore.google.com/detail/ifefifghpkllfibejafbakmflidjcjfp)
 [![Brave](https://raw.githubusercontent.com/smashedr/logo-icons/master/browsers/brave_48.png)](https://chromewebstore.google.com/detail/ifefifghpkllfibejafbakmflidjcjfp)
 [![Opera](https://raw.githubusercontent.com/smashedr/logo-icons/master/browsers/opera_48.png)](https://chromewebstore.google.com/detail/ifefifghpkllfibejafbakmflidjcjfp)
@@ -39,10 +43,10 @@ WXT Vue3 Starter Template.
 All **Chromium** Based Browsers can install the extension from the
 [Chrome Web Store](https://chromewebstore.google.com/detail/ifefifghpkllfibejafbakmflidjcjfp).
 
-- Download a [Chrome Release](https://github.com/smashedr/wxt-extension/releases/latest/download/github_extension-chrome.crx) from GitHub
-- Download a [Firefox Release](https://github.com/smashedr/wxt-extension/releases/latest/download/github_extension-firefox.xpi) from GitHub
+- Download a [Chrome Release](https://github.com/smashedr/wxt-extension/releases/latest/download/wxt-extension-chrome.crx) from GitHub
+- Download a [Firefox Release](https://github.com/smashedr/wxt-extension/releases/latest/download/wxt-extension-firefox.xpi) from GitHub
 
-[![Android QR Code](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/geo-image/qr-code-android.png)](https://github.com/smashedr/wxt-extension/releases/latest/download/github_extension-firefox.xpi)
+[![Android QR Code](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/geo-image/qr-code-android.png)](https://github.com/smashedr/wxt-extension/releases/latest/download/wxt-extension-firefox.xpi)
 
 _Note: To install self-hosted extensions on Android you must enable a hidden menu item:_
 [_https://extensionworkshop.com/documentation/publish/install-self-distributed_](https://extensionworkshop.com/documentation/publish/install-self-distributed/#install-addon-from-file-android)
