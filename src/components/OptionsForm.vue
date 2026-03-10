@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { saveOptions, updateOptions } from '@/utils/options.ts'
+import { Tooltip } from 'bootstrap'
 import { isMobile } from '@/utils/system.ts'
 
 const props = withDefaults(
@@ -25,6 +26,8 @@ function onChanged(changes: object, namespace: string) {
 
 onMounted(() => {
   updateOptions()
+  // NOTE: Find a better way to enable tooltips...
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => new Tooltip(el))
 })
 </script>
 
