@@ -83,6 +83,8 @@ If you run into any issues or need help getting started, please do one of the fo
 
 ## Contributing
 
+See the [CONTRIBUTING.md](#contributing-ov-file) for more details.
+
 Please consider making a donation to support the development of this project
 and [additional](https://cssnr.com/) open source projects.
 

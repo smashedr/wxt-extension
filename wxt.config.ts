@@ -24,6 +24,8 @@ export default defineConfig({
 
     return {
       icons,
+      name: 'WXT Extension',
+      description: 'WXT Vue3 Starter Template.',
       homepage_url: 'https://github.com/smashedr/wxt-extension',
       permissions: ['contextMenus', 'storage'],
       host_permissions: ['*://*/*'],
@@ -91,10 +93,8 @@ export default defineConfig({
     }
   },
 
+  // NOTE: Override with web-ext.config.ts
   webExt: {
-    binaries: {
-      firefox: 'C:/Program Files/Firefox Developer Edition/firefox.exe',
-    },
     disabled: true,
   },
 
