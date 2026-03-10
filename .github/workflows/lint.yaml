@@ -31,14 +31,14 @@ jobs:
         if: ${{ !cancelled() }}
         run: npm run package
 
-      - name: "web-ext"
-        if: ${{ !cancelled() }}
-        run: npm run lint:web-ext
-
       #- name: "eslint"
       #  if: ${{ !cancelled() }}
       #  run: |
       #    npm run lint
+
+      - name: "web-ext"
+        if: ${{ !cancelled() }}
+        run: npm run lint:web-ext
 
       - name: "prettier"
         if: ${{ !cancelled() }}

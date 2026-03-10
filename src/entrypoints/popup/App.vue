@@ -4,7 +4,6 @@ import { isFirefox, isMobile } from '@/utils/system.ts'
 // import { getOwnerRepo } from '@/utils/github.ts'
 
 import ToastAlerts from '@/components/ToastAlerts.vue'
-import BackToTop from '@/components/BackToTop.vue'
 import PanelHeader from '@/components/PanelHeader.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
@@ -63,7 +62,6 @@ console.log('width:', width.value)
     <OptionsForm :close-window="true" :compact="true" class="p-2" />
 
     <ToastAlerts />
-    <BackToTop />
   </div>
 </template>
 

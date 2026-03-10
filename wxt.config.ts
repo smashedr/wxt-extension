@@ -18,9 +18,10 @@ export default defineConfig({
   srcDir: 'src',
   modules: ['@wxt-dev/module-vue'],
 
-  manifest: ({ browser }) => {
+  manifest: ({ browser, mode }) => {
     const isFirefox = browser === 'firefox'
-    console.log('isFirefox:', isFirefox)
+    const isDev = mode === 'development'
+    console.log(`isDev: ${isDev} - isFirefox: ${isFirefox}`)
 
     return {
       icons,
@@ -66,7 +67,7 @@ export default defineConfig({
         },
         openExtPanel: {
           description: 'Open Extension Panel',
-          // suggested_key: { default: 'Alt+Shift+W' },
+          ...(!isDev && { suggested_key: { default: 'Alt+Shift+W' } }),
         },
         openOptions: {
           description: 'Open Options',
