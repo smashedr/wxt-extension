@@ -70,7 +70,7 @@ useTitle('Options')
 
         <OptionsForm />
 
-        <PermsCheck :show-info="true" :show-remove="isFirefox" class="my-3" />
+        <PermsCheck :close-window="true" :show-info="true" :show-remove="isFirefox" class="my-3" />
 
         <p class="fst-italic small mt-3">
           <a id="copy-support" href="#" @click.prevent="copySupport">Copy Support Information</a> for issue reporting.

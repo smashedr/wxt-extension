@@ -16,7 +16,7 @@ useTitle('Page')
     <PanelHeader />
   </header>
 
-  <main class="flex-grow-1">
+  <main class="flex-grow-1 overflow-auto">
     <div class="container-fluid p-3 h-100">
       <h1>Page</h1>
       <SearchBox class="m-3" />

@@ -107,7 +107,7 @@ const manifest = chrome.runtime.getManifest()
           title="Options"
           class="btn btn-sm btn-outline-info"
           role="button"
-          href="/src/options/index.html"
+          href="options.html"
           target="_blank"
           @click.prevent="openOptions(props.closeWindow)"
         >

@@ -48,13 +48,13 @@ export default defineConfig({
       //   },
       // },
 
-      // ...(isFirefox && {
-      //   page_action: {
-      //     default_popup: 'popup.html',
-      //     default_icon: icons,
-      //     show_matches: ['*://*/*'],
-      //   },
-      // }),
+      ...(isFirefox && {
+        page_action: {
+          default_popup: 'popup.html',
+          default_icon: icons,
+          show_matches: ['*://*/*'],
+        },
+      }),
 
       commands: {
         openSidePanel: {

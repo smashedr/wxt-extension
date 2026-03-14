@@ -4,7 +4,7 @@ import { isFirefox } from '@/utils/system.ts'
 import { createContextMenus, onClicked } from './menus.ts'
 
 export default defineBackground(() => {
-  console.log('Hello background!', { id: browser.runtime.id })
+  console.log(`Loaded: ${chrome.runtime.id}`)
 
   chrome.runtime.onInstalled.addListener(onInstalled)
   chrome.runtime.onStartup.addListener(onStartup)
