@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { isFirefox, isMobile } from '@/utils/system.ts'
-// import { getOwnerRepo } from '@/utils/github.ts'
-
 import ToastAlerts from '@/components/ToastAlerts.vue'
 import PanelHeader from '@/components/PanelHeader.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import ButtonsList from '@/components/ButtonsList.vue'
-// import BadgesView from '@/components/BadgesView.vue'
 
-let isBrowser = isFirefox ? '420px' : null
+const isBrowser = isFirefox ? '420px' : null
 const width = computed(() => (isMobile ? '100%' : isBrowser))
 console.log('width:', width.value)
 

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useTitle } from '@/composables/useTitle.ts'
-
 import ToastAlerts from '@/components/ToastAlerts.vue'
 import BackToTop from '@/components/BackToTop.vue'
 import PanelHeader from '@/components/PanelHeader.vue'

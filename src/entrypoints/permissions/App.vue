@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useTitle } from '@/composables/useTitle.ts'
-
 import BackToTop from '@/components/BackToTop.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
 import ToastAlerts from '@/components/ToastAlerts.vue'

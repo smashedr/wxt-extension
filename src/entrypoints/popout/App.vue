@@ -2,7 +2,6 @@
 import { onMounted } from 'vue'
 import { debounce } from '@/utils'
 import { useTitle } from '@/composables/useTitle.ts'
-
 import ButtonsList from '@/components/ButtonsList.vue'
 import ToastAlerts from '@/components/ToastAlerts.vue'
 import BackToTop from '@/components/BackToTop.vue'

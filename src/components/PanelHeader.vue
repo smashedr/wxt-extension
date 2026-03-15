@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { openExtPanel, openOptions, openPopup, openSidePanel } from '@/utils/extension.ts'
+import { clickOpen, openExtPanel, openOptions, openPopup, openSidePanel } from '@/utils/extension.ts'
 import { isMobile } from '@/utils/system.ts'
 
 const props = withDefaults(
@@ -69,6 +69,8 @@ const manifest = chrome.runtime.getManifest()
           class="link-body-emphasis text-decoration-none fs-4"
           target="_blank"
           :href="manifest.homepage_url"
+          :data-close="props.closeWindow"
+          @click.prevent="clickOpen"
         >
           <img src="/images/logo32.png" alt="L" class="mb-1" style="height: 1.1em" />
           {{ manifest.name }}</a
@@ -78,6 +80,8 @@ const manifest = chrome.runtime.getManifest()
           class="link-body-emphasis text-decoration-none small ms-1"
           target="_blank"
           :href="`${manifest.homepage_url}/releases/tag/${manifest.version}`"
+          :data-close="props.closeWindow"
+          @click.prevent="clickOpen"
         >
           v<span class="version">{{ manifest.version }}</span></a
         >
