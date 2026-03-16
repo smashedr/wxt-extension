@@ -67,10 +67,9 @@ const manifest = chrome.runtime.getManifest()
         <a
           title="Home Page"
           class="link-body-emphasis text-decoration-none fs-4"
-          target="_blank"
           :href="manifest.homepage_url"
-          :data-close="props.closeWindow"
-          @click.prevent="clickOpen"
+          target="_blank"
+          @click.prevent="clickOpen($event, props.closeWindow)"
         >
           <img src="/images/logo32.png" alt="L" class="mb-1" style="height: 1.1em" />
           {{ manifest.name }}</a
@@ -78,10 +77,9 @@ const manifest = chrome.runtime.getManifest()
         <a
           title="Release Notes"
           class="link-body-emphasis text-decoration-none small ms-1"
-          target="_blank"
           :href="`${manifest.homepage_url}/releases/tag/${manifest.version}`"
-          :data-close="props.closeWindow"
-          @click.prevent="clickOpen"
+          target="_blank"
+          @click.prevent="clickOpen($event, props.closeWindow)"
         >
           v<span class="version">{{ manifest.version }}</span></a
         >
@@ -111,7 +109,7 @@ const manifest = chrome.runtime.getManifest()
           title="Options"
           class="btn btn-sm btn-outline-info"
           role="button"
-          href="options.html"
+          href="/options.html"
           target="_blank"
           @click.prevent="openOptions(props.closeWindow)"
         >

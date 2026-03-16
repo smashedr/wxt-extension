@@ -42,7 +42,7 @@ console.log('closeWindow:', props.closeWindow)
         v-if="!isMobile && props.pageButton"
         class="btn btn-primary d-flex align-items-center hvr-grow-sm"
         role="button"
-        href="page.html"
+        href="/page.html"
         target="_blank"
         @click.prevent="openPage(props.closeWindow)"
       >
@@ -81,7 +81,7 @@ console.log('closeWindow:', props.closeWindow)
         v-if="!isMobile && props.optionsButton"
         class="btn btn-info d-flex align-items-center hvr-grow-sm"
         role="button"
-        href="options.html"
+        href="/options.html"
         target="_blank"
         @click.prevent="openOptions(props.closeWindow)"
       >

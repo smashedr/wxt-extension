@@ -122,11 +122,16 @@ export async function activateOrOpen(url: string, open = true) {
   console.warn('tab not found and open not set!')
 }
 
-export function clickOpen(e: Event) {
+export function clickOpen(e: Event, close = false) {
   const target = e.currentTarget as HTMLAnchorElement
-  if (!target.href) return
-  activateOrOpen(target.href).then(() => {
-    if (target.dataset.close === 'true') window.close()
+  let url = target.href
+  console.log('clickOpen:', close, url)
+  if (!url || url === '#') return
+  if (url.startsWith('/')) {
+    url = chrome.runtime.getURL(url)
+  }
+  activateOrOpen(url).then(() => {
+    if (close || target.dataset.close === 'true') window.close()
   })
 }
 

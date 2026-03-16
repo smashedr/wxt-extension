@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { isFirefox } from '@/utils/system.ts'
 import { onMounted } from 'vue'
+import { clickOpen } from '@/utils/extension.ts'
 
 function openChromeShortcuts() {
   chrome.tabs.update({ url: 'chrome://extensions/shortcuts' })
@@ -77,6 +78,7 @@ async function setShortcuts(selector = '#keyboard-shortcuts') {
         href="https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox"
         target="_blank"
         rel="noopener"
+        @click.prevent="clickOpen"
       >
         https://mzl.la/3Qwp5QQ
         <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTitle } from '@/composables/useTitle.ts'
 import { copySupport } from '@/utils/options.ts'
+import { clickOpen } from '@/utils/extension.ts'
 import { isFirefox, isMobile } from '@/utils/system.ts'
 import BackToTop from '@/components/BackToTop.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
@@ -36,6 +37,7 @@ useTitle('Options')
               :href="manifest.homepage_url"
               target="_blank"
               rel="nofollow"
+              @click.prevent="clickOpen"
             >
               {{ manifest.name }}</a
             >
@@ -45,6 +47,7 @@ useTitle('Options')
               :href="`${manifest.homepage_url}/releases/tag/${manifest.version}`"
               target="_blank"
               rel="nofollow"
+              @click.prevent="clickOpen"
             >
               v<span class="version">{{ manifest.version }}</span></a
             >
