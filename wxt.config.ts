@@ -48,13 +48,11 @@ export default defineConfig({
       //   },
       // },
 
-      ...(isFirefox && {
-        page_action: {
-          default_popup: 'popup.html',
-          default_icon: icons,
-          show_matches: ['*://*/*'],
-        },
-      }),
+      page_action: {
+        default_popup: 'popup.html',
+        default_icon: icons,
+        show_matches: ['*://*/*'],
+      },
 
       commands: {
         openSidePanel: {
@@ -99,18 +97,18 @@ export default defineConfig({
     disabled: true,
   },
 
-  hooks: {
-    'build:manifestGenerated': (wxt, manifest) => {
-      console.log('wxt.config.browser', wxt.config.browser)
-      if (wxt.config.browser === 'firefox') {
-        manifest.page_action = {
-          default_popup: 'popup.html',
-          default_icon: icons,
-          show_matches: ['*://*/*'],
-        }
-      }
-    },
-  },
+  // hooks: {
+  //   'build:manifestGenerated': (wxt, manifest) => {
+  //     console.log('wxt.config.browser', wxt.config.browser)
+  //     if (wxt.config.browser === 'firefox') {
+  //       manifest.page_action = {
+  //         default_popup: 'popup.html',
+  //         default_icon: icons,
+  //         show_matches: ['*://*/*'],
+  //       }
+  //     }
+  //   },
+  // },
 
   vite: () => ({
     // NOTE: This silences bootstrap deprecation warnings
