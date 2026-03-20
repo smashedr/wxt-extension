@@ -6,6 +6,7 @@ import PanelHeader from '@/components/PanelHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import ButtonsList from '@/components/ButtonsList.vue'
 import SearchBox from '@/components/SearchBox.vue'
+import OptionsOffscreen from '@/components/OptionsOffscreen.vue'
 
 useTitle('Page')
 </script>
@@ -27,6 +28,8 @@ useTitle('Page')
     <hr class="my-0" />
     <PageFooter class="m-3" />
   </footer>
+
+  <OptionsOffscreen />
 
   <ToastAlerts />
   <BackToTop />
