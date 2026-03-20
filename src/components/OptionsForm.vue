@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { saveOptions, updateOptions } from '@/utils/options.ts'
+import { saveOptions } from '@/utils/options.ts'
+import { useOptions } from '@/composables/useOptions.ts'
 import { Tooltip } from 'bootstrap'
 import { isMobile } from '@/utils/system.ts'
 
@@ -13,19 +14,9 @@ const props = withDefaults(
   },
 )
 
-chrome.storage.onChanged.addListener(onChanged)
-
-function onChanged(changes: object, namespace: string) {
-  for (const [key, _] of Object.entries(changes)) {
-    console.debug('onChanged:', namespace, key)
-    if (namespace === 'sync' && key === 'options') {
-      updateOptions()
-    }
-  }
-}
+const options = useOptions()
 
 onMounted(() => {
-  updateOptions()
   // NOTE: Find a better way to enable tooltips...
   document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => new Tooltip(el))
 })
@@ -38,12 +29,13 @@ onMounted(() => {
         <label for="testInput" class="form-label"><i class="fa-regular fa-keyboard me-1"></i> Test Input</label>
         <i class="fa-solid fa-circle-info p-1" data-bs-toggle="tooltip" data-bs-title="Example Text Input."></i>
         <input
+          v-model="options.testInput"
+          @change="saveOptions"
           id="testInput"
           aria-describedby="testInputHelp"
           type="text"
           class="form-control"
           autocomplete="off"
-          @change="saveOptions"
         />
         <div class="form-text" id="testInputHelp">Just a test text input.</div>
       </div>
@@ -51,6 +43,8 @@ onMounted(() => {
         <label for="testNumber" class="form-label"><i class="fa-solid fa-hashtag me-1"></i> Number</label>
         <i class="fa-solid fa-circle-info p-1" data-bs-toggle="tooltip" data-bs-title="Example Number Input."></i>
         <input
+          v-model="options.testNumber"
+          @change="saveOptions"
           id="testNumber"
           aria-describedby="testNumberHelp"
           type="number"
@@ -60,14 +54,20 @@ onMounted(() => {
           class="form-control"
           autocomplete="off"
           placeholder="Minutes"
-          @change="saveOptions"
         />
         <div class="form-text" id="testNumberHelp">A number 5-360.</div>
       </div>
     </div>
 
     <div class="form-check form-switch">
-      <input class="form-check-input" id="siteIcon" type="checkbox" role="switch" @change="saveOptions" />
+      <input
+        v-model="options.siteIcon"
+        @change="saveOptions"
+        id="siteIcon"
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+      />
       <label class="form-check-label" for="siteIcon">Show Site Icon</label>
       <i
         class="fa-solid fa-circle-info p-1"
@@ -76,7 +76,14 @@ onMounted(() => {
       ></i>
     </div>
     <div v-if="!isMobile" class="form-check form-switch">
-      <input class="form-check-input" id="contextMenu" type="checkbox" role="switch" @change="saveOptions" />
+      <input
+        v-model="options.contextMenu"
+        @change="saveOptions"
+        id="contextMenu"
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+      />
       <label class="form-check-label" for="contextMenu">Enable Right Click Menu</label>
       <i
         class="fa-solid fa-circle-info p-1"
@@ -85,7 +92,14 @@ onMounted(() => {
       ></i>
     </div>
     <div class="form-check form-switch">
-      <input class="form-check-input" id="showUpdate" type="checkbox" role="switch" @change="saveOptions" />
+      <input
+        v-model="options.showUpdate"
+        @change="saveOptions"
+        id="showUpdate"
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+      />
       <label class="form-check-label" for="showUpdate">Show Release Notes on Update</label>
       <i
         class="fa-solid fa-circle-info p-1"
