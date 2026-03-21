@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './views/App.vue'
+import App from './App.vue'
 
 /**
  * Mount the Vue app to the DOM.
