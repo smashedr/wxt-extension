@@ -11,6 +11,8 @@ import PanelFooter from '@/components/PanelFooter.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 
+console.debug('%c popout/App.vue', 'color: Lime')
+
 async function windowResize() {
   const size = { panelWidth: window.outerWidth, panelHeight: window.outerHeight }
   console.debug('windowResize:', size)

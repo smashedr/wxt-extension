@@ -8,6 +8,8 @@ import ButtonsList from '@/components/ButtonsList.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import OptionsOffscreen from '@/components/OptionsOffscreen.vue'
 
+console.debug('%c page/App.vue', 'color: Lime')
+
 useTitle('Page')
 </script>
 
