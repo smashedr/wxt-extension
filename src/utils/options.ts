@@ -1,6 +1,3 @@
-import { showToast } from '@/composables/useToast.ts'
-import { isFirefox, isMobile } from '@/utils/system.ts'
-
 export const defaultOptions = {
   testInput: 'Default Value',
   testNumber: 60,
@@ -65,32 +62,4 @@ export async function saveOptions(event: Event) /* NOSONAR */ {
   } else {
     console.warn(`No Value for key: ${key}`)
   }
-}
-
-// NOTE: showToast and copySupport should NOT be in this file...
-export async function copySupport(event: Event) {
-  console.debug('copySupport:', event)
-  event.preventDefault()
-  const manifest = chrome.runtime.getManifest()
-  const permissions = await chrome.permissions.getAll()
-  const options = await getOptions()
-  const local = await chrome.storage.local.get()
-
-  // options.authToken = options.authToken ? 'Set' : 'NOT SET'
-
-  const result = [
-    `${manifest.name} - ${manifest.version}`,
-    navigator.userAgent,
-    `permissions.origins: ${JSON.stringify(permissions.origins)}`,
-    `options: ${JSON.stringify(options)}`,
-    `local: ${JSON.stringify(local)}`,
-    `isFirefox: ${isFirefox}`,
-    `isMobile: ${isMobile}`,
-  ]
-  const commands = await chrome.commands?.getAll()
-  if (commands) {
-    result.push(`commands: ${JSON.stringify(commands)}`)
-  }
-  await navigator.clipboard.writeText(result.join('\n'))
-  showToast('Support Information Copied.')
 }

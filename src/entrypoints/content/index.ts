@@ -15,7 +15,7 @@ function mountApp() {
 export default defineContentScript({
   matches: ['*://*/*'],
   main() {
-    console.log('%c wxt-extension: content/index.ts', 'color: Lime')
+    console.log(`%c ${chrome.runtime.id}: content/index.ts`, 'color: Lime')
     mountApp()
   },
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { isFirefox } from '@/utils/system.ts'
 import { onMounted } from 'vue'
 import { clickOpen } from '@/utils/extension.ts'
+import { isFirefox } from '@/utils/system.ts'
 
 function openChromeShortcuts() {
   chrome.tabs.update({ url: 'chrome://extensions/shortcuts' })

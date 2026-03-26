@@ -6,6 +6,8 @@ import PanelHeader from '@/components/PanelHeader.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import PanelFooter from '@/components/PanelFooter.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
+
+console.debug('%c sidepanel/App.vue', 'color: Lime')
 </script>
 
 <template>

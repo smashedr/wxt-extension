@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { isMobile } from '@/utils/system.ts'
-import { showToast } from '@/composables/useToast.ts'
 import { openExtPanel, openOptions, openPage, openPopup, openSidePanel } from '@/utils/extension.ts'
+import { showToast } from '@/composables/useToast.ts'
+import { isMobile } from '@/utils/system.ts'
 
 const props = withDefaults(
   defineProps<{

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { getOwnerRepo } from '@/utils/github.ts'
 import { getOptions } from '@/utils/options.ts'
-// import Logo from '@/assets/logo.svg'
 
 chrome.storage.onChanged.addListener(onChanged)
 
@@ -49,17 +47,11 @@ function handleKeyboard(e: KeyboardEvent) {
   } else if (['KeyE'].includes(e.code)) {
     console.log('Pressed E')
     chrome.runtime.sendMessage('openPopup')
-  } else if (['KeyR'].includes(e.code)) {
-    console.log('Pressed R')
-    const result = getOwnerRepo(window.location.href)
-    console.log('result:', result)
-    if (result) {
-      const url = `${result.url}/releases`
-      console.log('url:', url)
-      // history.pushState(null, '', url)
-      // window.dispatchEvent(new PopStateEvent('popstate', { state: null }))
-      navigateTo(url)
-    }
+  } else if (['KeyH'].includes(e.code)) {
+    console.log('Pressed H')
+    const manifest = chrome.runtime.getManifest()
+    console.debug('homepage_url:', manifest.homepage_url)
+    if (manifest.homepage_url) navigateTo(manifest.homepage_url)
   }
 }
 

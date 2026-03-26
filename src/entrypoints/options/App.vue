@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { useTitle } from '@/composables/useTitle.ts'
-import { copySupport } from '@/utils/options.ts'
 import { clickOpen } from '@/utils/extension.ts'
-import { isFirefox, isMobile } from '@/utils/system.ts'
+import { useTitle } from '@/composables/useTitle.ts'
+import { isFirefox } from '@/utils/system.ts'
 import BackToTop from '@/components/BackToTop.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
 import ToastAlerts from '@/components/ToastAlerts.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 import KeyboardShortcuts from '@/components/KeyboardShortcuts.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import HorizontalRule from '@/components/HorizontalRule.vue'
+import CopySupport from '@/components/CopySupport.vue'
 
 console.debug('%c options/App.vue', 'color: Lime')
 
@@ -54,29 +55,15 @@ useTitle('Options')
           </div>
         </div>
 
-        <template v-if="!isMobile">
-          <div class="d-flex flex-row align-items-center justify-content-center">
-            <hr class="w-100 my-0" />
-            <span class="text-nowrap mx-2">Keyboard Shortcuts</span>
-            <hr class="w-100 my-0" />
-          </div>
+        <HorizontalRule>Keyboard Shortcuts</HorizontalRule>
+        <KeyboardShortcuts />
 
-          <KeyboardShortcuts />
-        </template>
-
-        <div class="d-flex flex-row align-items-center justify-content-center">
-          <hr class="w-100 my-0" />
-          <span class="text-nowrap mx-2">Extension Options</span>
-          <hr class="w-100 my-0" />
-        </div>
-
+        <HorizontalRule>Extension Options</HorizontalRule>
         <OptionsForm />
 
         <PermsCheck :close-window="true" :show-info="true" :show-remove="isFirefox" class="my-3" />
 
-        <p class="fst-italic small mt-3">
-          <a id="copy-support" href="#" @click.prevent="copySupport">Copy Support Information</a> for issue reporting.
-        </p>
+        <CopySupport class="fst-italic small">Copy Support Information</CopySupport>
 
         <hr class="mt-0" />
 

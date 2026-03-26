@@ -5,7 +5,7 @@ import PermsCheck from '@/components/PermsCheck.vue'
 import ToastAlerts from '@/components/ToastAlerts.vue'
 import PageFooter from '@/components/PageFooter.vue'
 
-console.debug('%c options/App.vue', 'color: Lime')
+console.debug('%c permissions/App.vue', 'color: Lime')
 
 chrome.permissions.onAdded.addListener(onAdded)
 

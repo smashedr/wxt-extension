@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { clickOpen, openExtPanel, openOptions, openPopup, openSidePanel } from '@/utils/extension.ts'
+import { clickOpen, openExtPanel, openOptions, openPage, openPopup, openSidePanel } from '@/utils/extension.ts'
 import { isMobile } from '@/utils/system.ts'
 import ThemeSwitch from '@/components/ThemeSwitch.vue'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     panelButton?: boolean
-    pageButton?: boolean // not implemented
+    pageButton?: boolean
     sideButton?: boolean
     popupButton?: boolean
     optionsButton?: boolean
@@ -23,6 +23,7 @@ const props = withDefaults(
 )
 
 const manifest = chrome.runtime.getManifest()
+console.log('manifest:', manifest)
 </script>
 
 <template>
@@ -36,7 +37,7 @@ const manifest = chrome.runtime.getManifest()
           class="link-body-emphasis text-decoration-none fs-4"
           :href="manifest.homepage_url"
           target="_blank"
-          @click.prevent="clickOpen($event, props.closeWindow)"
+          @click.prevent="clickOpen($event, closeWindow)"
         >
           <img src="/images/logo32.png" alt="L" class="mb-1" style="height: 1.1em" />
           {{ manifest.name }}</a
@@ -46,39 +47,49 @@ const manifest = chrome.runtime.getManifest()
           class="link-body-emphasis text-decoration-none small ms-1"
           :href="`${manifest.homepage_url}/releases/tag/${manifest.version}`"
           target="_blank"
-          @click.prevent="clickOpen($event, props.closeWindow)"
+          @click.prevent="clickOpen($event, closeWindow)"
         >
           v<span class="version">{{ manifest.version }}</span></a
         >
       </div>
       <!-- flex-grow-1 -->
 
-      <div v-if="!isMobile && props.panelButton" class="ms-1">
-        <button title="Extension Panel" class="btn btn-sm btn-outline-info" @click="openExtPanel(props.closeWindow)">
+      <div v-if="pageButton" class="ms-1">
+        <a
+          title="Extension Page"
+          href="/page.html"
+          class="btn btn-sm btn-outline-info"
+          target="_blank"
+          @click.prevent="openPage(closeWindow)"
+        >
+          <i class="fa-solid fa-display me-1"></i>
+        </a>
+      </div>
+
+      <div v-if="!isMobile && panelButton" class="ms-1">
+        <button title="Extension Panel" class="btn btn-sm btn-outline-info" @click="openExtPanel(closeWindow)">
           <i class="fa-regular fa-window-restore me-1"></i>
         </button>
       </div>
 
-      <div v-if="!isMobile && props.sideButton" class="ms-1">
-        <button title="Side Panel" class="btn btn-sm btn-outline-info" @click="openSidePanel(props.closeWindow)">
+      <div v-if="!isMobile && sideButton" class="ms-1">
+        <button title="Side Panel" class="btn btn-sm btn-outline-info" @click="openSidePanel(closeWindow)">
           <i class="fa-solid fa-table-columns"></i>
         </button>
       </div>
 
-      <div v-if="!isMobile && props.popupButton" class="ms-1">
+      <div v-if="!isMobile && popupButton" class="ms-1">
         <button title="Open Popup" class="btn btn-sm btn-outline-info" @click="openPopup()">
           <i class="fa-solid fa-window-maximize"></i>
         </button>
       </div>
 
-      <div v-if="props.optionsButton" class="ms-1">
+      <div v-if="optionsButton" class="ms-1">
         <a
           title="Options"
-          class="btn btn-sm btn-outline-info"
-          role="button"
           href="/options.html"
-          target="_blank"
-          @click.prevent="openOptions(props.closeWindow)"
+          class="btn btn-sm btn-outline-info"
+          @click.prevent="openOptions(closeWindow)"
         >
           <i class="fa-solid fa-gears"></i
         ></a>
