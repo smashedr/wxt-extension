@@ -105,7 +105,7 @@ export async function openExtPanel(close = false) {
   console.debug('panel:', panel)
   if (panel) {
     console.debug(`%c Created new window: ${panel.id}`, 'color: Magenta')
-    chrome.storage.local.set({ lastPanelID: panel.id }).catch((e) => console.warn(e))
+    chrome.storage.local.set({ lastPanelID: panel.id }).catch(console.warn)
   }
   if (close) window.close()
 }
