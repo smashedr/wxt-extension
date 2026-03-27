@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { i18n } from '#imports'
 import { clickOpen } from '@/utils/extension.ts'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     homePage?: boolean
     requestFeature?: boolean
@@ -15,39 +16,38 @@ const props = withDefaults(
 )
 
 const manifest = chrome.runtime.getManifest()
-console.debug('manifest:', manifest)
 </script>
 
 <template>
   <div class="text-center">
     <a
-      v-if="props.homePage"
+      v-if="homePage"
       class="link-body-emphasis text-decoration-none d-inline-block"
       rel="noopener"
       :href="manifest.homepage_url"
       target="_blank"
       @click.prevent="clickOpen"
-      >Home Page</a
+      >{{ i18n.t('ui.homePage') }}</a
     >
     <span class="mx-1">&bull;</span>
     <a
-      v-if="props.requestFeature"
+      v-if="requestFeature"
       class="link-body-emphasis text-decoration-none d-inline-block"
       rel="noopener"
       :href="`${manifest.homepage_url}/issues/new?template=1-feature.yaml`"
       target="_blank"
       @click.prevent="clickOpen"
-      >Request Feature</a
+      >{{ i18n.t('ui.requestFeature') }}</a
     >
     <span class="mx-1">&bull;</span>
     <a
-      v-if="props.openIssue"
+      v-if="openIssue"
       class="link-body-emphasis text-decoration-none d-inline-block"
       rel="noopener"
       :href="`${manifest.homepage_url}/issues`"
       target="_blank"
       @click.prevent="clickOpen"
-      >Open Issue</a
+      >{{ i18n.t('ui.openIssue') }}</a
     >
   </div>
 </template>

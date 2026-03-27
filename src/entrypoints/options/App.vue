@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { i18n } from '#imports'
 import { clickOpen } from '@/utils/extension.ts'
 import { useTitle } from '@/composables/useTitle.ts'
 import { isFirefox } from '@/utils/system.ts'
@@ -15,7 +16,7 @@ console.debug('%c options/App.vue', 'color: Lime')
 
 const manifest = chrome.runtime.getManifest()
 
-useTitle('Options')
+useTitle(i18n.t('options.title'))
 </script>
 
 <template>
@@ -34,7 +35,7 @@ useTitle('Options')
           <div>
             <a
               class="link-body-emphasis text-decoration-none fs-1"
-              title="Home Page"
+              :title="i18n.t('ui.homePage')"
               :href="manifest.homepage_url"
               target="_blank"
               rel="nofollow"
@@ -44,7 +45,7 @@ useTitle('Options')
             >
             <a
               class="link-body-emphasis text-decoration-none small"
-              title="Release Notes"
+              :title="i18n.t('ui.releaseNotes')"
               :href="`${manifest.homepage_url}/releases/tag/${manifest.version}`"
               target="_blank"
               rel="nofollow"
@@ -55,15 +56,20 @@ useTitle('Options')
           </div>
         </div>
 
-        <HorizontalRule>Keyboard Shortcuts</HorizontalRule>
+        <HorizontalRule>{{ i18n.t('ui.keyboard.shortcut') }}</HorizontalRule>
         <KeyboardShortcuts />
 
-        <HorizontalRule>Extension Options</HorizontalRule>
+        <HorizontalRule>{{ i18n.t('options.extension') }}</HorizontalRule>
         <OptionsForm />
 
         <PermsCheck :close-window="true" :show-info="true" :show-remove="isFirefox" class="my-3" />
 
-        <CopySupport class="fst-italic small">Copy Support Information</CopySupport>
+        <CopySupport
+          :message="i18n.t('options.copySupportMsg')"
+          :tip="i18n.t('options.copySupportTip')"
+          class="fst-italic small"
+          >{{ i18n.t('options.copySupport') }}</CopySupport
+        >
 
         <hr class="mt-0" />
 

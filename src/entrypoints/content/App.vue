@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { i18n } from '#imports'
 import { onMounted, ref } from 'vue'
 import { getOptions } from '@/utils/options.ts'
 
@@ -78,7 +79,9 @@ onMounted(() => {
 <template>
   <div class="popup-container">
     <div v-show="showPopup" class="popup-content">
-      <p>Press the <b>T</b> key to toggle the icon.</p>
+      <p>
+        {{ i18n.t('content.press') }} <b>{{ i18n.t('content.key.toggle') }}</b> {{ i18n.t('content.toggle') }}
+      </p>
     </div>
     <button v-show="showIcon" class="toggle-button" @click="togglePopup()">
       <img src="@/assets/logo.svg" alt="T" class="button-icon" />
