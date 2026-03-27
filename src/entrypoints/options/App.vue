@@ -62,7 +62,7 @@ useTitle(i18n.t('options.title'))
         <HorizontalRule>{{ i18n.t('options.extension') }}</HorizontalRule>
         <OptionsForm />
 
-        <PermsCheck :close-window="true" :show-info="true" :show-remove="isFirefox" class="my-3" />
+        <PermsCheck :show-info="true" :show-remove="isFirefox" class="my-3" />
 
         <CopySupport
           :message="i18n.t('options.copySupportMsg')"

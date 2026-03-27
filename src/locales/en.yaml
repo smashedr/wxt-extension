@@ -24,6 +24,7 @@ ui:
     extensionPanel: Extension Panel
     extensionPage: Extension Page
     showOptions: Show Options
+    showToast: Show Factual Toast
 
   keyboard:
     description: Description

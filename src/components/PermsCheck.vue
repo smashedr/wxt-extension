@@ -25,7 +25,7 @@ const props = withDefaults(
 const hasPerms = ref(true)
 
 const manifest = chrome.runtime.getManifest()
-const host_permissions = manifest.optional_host_permissions
+const host_permissions = manifest.host_permissions
 console.debug('host_permissions:', host_permissions)
 
 async function updatePerms() {

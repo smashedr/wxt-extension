@@ -22,12 +22,12 @@ console.log('width:', width.value)
     <!--<PermsCheck />-->
 
     <div class="d-grid gap-2 p-1">
-      <PermsCheck />
+      <PermsCheck :close-window="true" />
       <SearchBox :close-window="true" />
       <ButtonsList :close-window="true" :popup-button="false" />
     </div>
 
-    <OptionsForm :close-window="true" :compact="true" class="p-2" />
+    <OptionsForm :close-window="true" :compact="true" :show="['switches']" class="p-2" />
 
     <ToastAlerts />
   </div>

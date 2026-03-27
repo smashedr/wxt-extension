@@ -46,7 +46,7 @@ useTitle('Panel')
   </main>
 
   <footer class="flex-shrink-0">
-    <OptionsForm :close-window="true" :compact="true" class="p-2" />
+    <OptionsForm :close-window="true" :compact="true" :show="['switches']" class="p-2" />
     <PanelFooter />
   </footer>
 

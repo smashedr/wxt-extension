@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { i18n } from '#imports'
 import { openExtPanel, openOptions, openPage, openPopup, openSidePanel } from '@/utils/extension.ts'
 import { showToast } from '@/composables/useToast.ts'
 import { isMobile } from '@/utils/system.ts'
@@ -35,19 +36,17 @@ console.log('closeWindow:', props.closeWindow)
         @click="showToast('ti ekorb flar')"
       >
         <i class="fa-regular fa-window-maximize me-1"></i>
-        <span class="flex-fill text-center me-4">Show Factual Toast</span>
+        <span class="flex-fill text-center me-4">{{ i18n.t('ui.action.showToast') }}</span>
       </a>
 
       <a
         v-if="!isMobile && props.pageButton"
-        class="btn btn-primary d-flex align-items-center hvr-grow-sm"
-        role="button"
         href="/page.html"
-        target="_blank"
+        class="btn btn-primary d-flex align-items-center hvr-grow-sm"
         @click.prevent="openPage(props.closeWindow)"
       >
         <i class="fa-solid fa-desktop me-1"></i>
-        <span class="flex-fill text-center me-4">Open Extension Page</span>
+        <span class="flex-fill text-center me-4">{{ i18n.t('ui.action.extensionPage') }}</span>
       </a>
 
       <button
@@ -56,7 +55,7 @@ console.log('closeWindow:', props.closeWindow)
         @click="openPopup()"
       >
         <i class="fa-solid fa-window-maximize me-1"></i>
-        <span class="flex-fill text-center me-4">Open Popup</span>
+        <span class="flex-fill text-center me-4">{{ i18n.t('ui.action.openPopup') }}</span>
       </button>
 
       <button
@@ -65,7 +64,7 @@ console.log('closeWindow:', props.closeWindow)
         @click="openExtPanel(props.closeWindow)"
       >
         <i class="fa-regular fa-window-restore me-1"></i>
-        <span class="flex-fill text-center me-4">Open Extension Panel</span>
+        <span class="flex-fill text-center me-4">{{ i18n.t('ctx.openExtPanel') }}</span>
       </button>
 
       <button
@@ -74,19 +73,17 @@ console.log('closeWindow:', props.closeWindow)
         @click="openSidePanel(props.closeWindow)"
       >
         <i class="fa-solid fa-table-columns me-1"></i>
-        <span class="flex-fill text-center me-4">Open Side Panel</span>
+        <span class="flex-fill text-center me-4">{{ i18n.t('ctx.openSidePanel') }}</span>
       </button>
 
       <a
         v-if="!isMobile && props.optionsButton"
-        class="btn btn-info d-flex align-items-center hvr-grow-sm"
-        role="button"
         href="/options.html"
-        target="_blank"
+        class="btn btn-info d-flex align-items-center hvr-grow-sm"
         @click.prevent="openOptions(props.closeWindow)"
       >
         <i class="fa-solid fa-gears me-1"></i>
-        <span class="flex-fill text-center me-4">Open Options</span>
+        <span class="flex-fill text-center me-4">{{ i18n.t('ctx.openOptions') }}</span>
       </a>
     </div>
   </div>
