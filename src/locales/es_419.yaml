@@ -1,0 +1,91 @@
+name: WXT Extension
+short_name: WXT
+description: Plantilla de extensión web inicial WXT Vue3
+
+ui:
+  options: Opciones
+  homePage: Página de inicio
+  releaseNotes: Notas de la versión
+  requestFeature: Solicitar función
+  openIssue: Reportar problema
+  noTabAccess: Sin acceso a la pestaña actual.
+
+  theme:
+    dark: Oscuro
+    light: Claro
+    auto: Automático
+
+  action:
+    cancel: Cancelar
+    close: Cerrar
+    go: Ir
+    openPopup: Abrir ventana emergente
+    sidePanel: Panel lateral
+    extensionPanel: Panel de extensión
+    extensionPage: Página de extensión
+    showOptions: Mostrar opciones
+    showToast: Mostrar notificación informativa
+
+  keyboard:
+    description: Descripción
+    manage: Administrar atajos de teclado
+    notSet: No configurado
+    shortcut: Atajo
+    shortcuts: Atajos de teclado
+    unknown: Desconocido
+
+  perms:
+    grant:
+      text: Otorgar permisos de host
+      tip: Esta extensión requiere permisos de host para funcionar
+    remove:
+      text: Eliminar permisos de host
+      tip: Ya no podrás analizar imágenes nuevas
+    info: Más información sobre los permisos
+
+options:
+  # options/App.vue
+  title: Opciones
+  extension: Opciones de la extensión
+  copySupport: Copiar información de soporte
+  copySupportTip: Para reportar problemas.
+  copySupportMsg: Información de soporte copiada.
+
+ctx:
+  # background/menus.ts
+  openPopup: Abrir ventana emergente
+  openSidePanel: Abrir panel lateral
+  openExtPanel: Abrir panel de extensión
+  openOptions: Abrir opciones
+
+cmd:
+  # wxt.config.ts
+  executeAction: Abrir ventana emergente
+  openSidePanel: Abrir panel lateral
+  openExtPanel: Abrir panel de extensión
+  openOptions: Abrir opciones
+
+option:
+  toggle:
+    siteIcon:
+      label: Ícono del sitio
+      tip: Mostrar ícono en los sitios.
+    contextMenu:
+      label: Menú contextual
+      tip: Mostrar menú contextual al hacer clic derecho.
+    showUpdate:
+      label: Mostrar actualizaciones
+      tip: Mostrar notificaciones de actualización.
+
+page:
+  title: Página
+
+permissions:
+  title: Permisos
+  reason: Para demostrar la verificación de permisos, se requieren permisos de host.
+
+content:
+  press: Presiona
+  toggle: para activar o desactivar el ícono.
+  key:
+    toggle: T

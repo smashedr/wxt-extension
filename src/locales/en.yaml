@@ -1,0 +1,91 @@
+name: WXT Extension
+short_name: WXT
+description: WXT Vue3 Starter Web Extension Template
+
+ui:
+  options: Options
+  homePage: Home Page
+  releaseNotes: Release Notes
+  requestFeature: Request Feature
+  openIssue: Open Issue
+  noTabAccess: No Access to the Current Tab.
+
+  theme:
+    dark: Dark
+    light: Light
+    auto: Auto
+
+  action:
+    cancel: Cancel
+    close: Close
+    go: Go
+    openPopup: Open Popup
+    sidePanel: Side Panel
+    extensionPanel: Extension Panel
+    extensionPage: Extension Page
+    showOptions: Show Options
+    showToast: Show Factual Toast
+
+  keyboard:
+    description: Description
+    manage: Manage Keyboard Shortcuts
+    notSet: Not Set
+    shortcut: Shortcut
+    shortcuts: Keyboard Shortcuts
+    unknown: Unknown
+
+  perms:
+    grant:
+      text: Grant Host Permissions
+      tip: This Extension Requires Host Permissions to Function
+    remove:
+      text: Remove Host Permissions
+      tip: You will no longer be able to analyze new images
+    info: More Information on Permissions
+
+options:
+  # options/App.vue
+  title: Options
+  extension: Extension Options
+  copySupport: Copy Support Information
+  copySupportTip: For issue reporting.
+  copySupportMsg: Support Information Copied.
+
+ctx:
+  # background/menus.ts
+  openPopup: Open Popup
+  openSidePanel: Open Side Panel
+  openExtPanel: Open Extension Panel
+  openOptions: Open Options
+
+cmd:
+  # wxt.config.ts
+  executeAction: Open Popup
+  openSidePanel: Open Side Panel
+  openExtPanel: Open Extension Panel
+  openOptions: Open Options
+
+option:
+  toggle:
+    siteIcon:
+      label: Site Icon
+      tip: Show Icon on Sites.
+    contextMenu:
+      label: Context Menu
+      tip: Show context menu on right click.
+    showUpdate:
+      label: Show Update
+      tip: Show update notifications.
+
+page:
+  title: Page
+
+permissions:
+  title: Permissions
+  reason: To demonstrate the permissions check, host permissions are required.
+
+content:
+  press: Press the
+  toggle: key to toggle the icon.
+  key:
+    toggle: T

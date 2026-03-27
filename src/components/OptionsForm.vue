@@ -1,20 +1,30 @@
 <script setup lang="ts">
+import { i18n } from '#imports'
 import { onMounted } from 'vue'
-import { saveOptions } from '@/utils/options.ts'
+import { saveKeyValue, saveOptions } from '@/utils/options.ts'
 import { useOptions } from '@/composables/useOptions.ts'
 import { Tooltip } from 'bootstrap'
-import { isMobile } from '@/utils/system.ts'
+import FormSwitch from '@/components/FormSwitch.vue'
 
 withDefaults(
   defineProps<{
     compact?: boolean
+    show?: string[]
   }>(),
   {
     compact: false,
+    show: () => ['inputs', 'switches'],
   },
 )
 
 const options = useOptions()
+
+const switches = ['siteIcon', 'contextMenu', 'showUpdate'].map((key) => ({
+  key,
+  label: i18n.t(`option.toggle.${key}.label` as any),
+  tooltip: i18n.t(`option.toggle.${key}.tip` as any),
+}))
+console.log('switches:', switches)
 
 onMounted(() => {
   // NOTE: Find a better way to enable tooltips...
@@ -24,7 +34,7 @@ onMounted(() => {
 
 <template>
   <form>
-    <div class="row m-0 mb-2 g-1">
+    <div v-if="show.includes('inputs')" class="row m-0 mb-2 g-1">
       <div :class="compact ? 'col-12 col-sm-6' : 'col-12 col-sm-8'">
         <label for="testInput" class="form-label"><i class="fa-regular fa-keyboard me-1"></i> Test Input</label>
         <i class="fa-solid fa-circle-info p-1" data-bs-toggle="tooltip" data-bs-title="Example Text Input."></i>
@@ -59,55 +69,18 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="mb-2">
-      <div class="form-check form-switch">
-        <input
-          v-model="options.siteIcon"
-          @change="saveOptions"
-          id="siteIcon"
-          class="form-check-input"
-          type="checkbox"
-          role="switch"
+    <!-- switches -->
+    <div v-if="show.includes('switches')" class="row m-0">
+      <template v-for="option in switches" :key="option.key">
+        <FormSwitch
+          :class="{ 'col-12': true, 'col-sm-6': !compact }"
+          :value="(options[option.key] as boolean) || false"
+          :name="option.key"
+          :label="option.label"
+          :tooltip="option.tooltip"
+          @change="saveKeyValue"
         />
-        <label class="form-check-label" for="siteIcon">Show Site Icon</label>
-        <i
-          class="fa-solid fa-circle-info p-1"
-          data-bs-toggle="tooltip"
-          data-bs-title="Show Context Menu on Right Click."
-        ></i>
-      </div>
-      <div v-if="!isMobile" class="form-check form-switch">
-        <input
-          v-model="options.contextMenu"
-          @change="saveOptions"
-          id="contextMenu"
-          class="form-check-input"
-          type="checkbox"
-          role="switch"
-        />
-        <label class="form-check-label" for="contextMenu">Enable Right Click Menu</label>
-        <i
-          class="fa-solid fa-circle-info p-1"
-          data-bs-toggle="tooltip"
-          data-bs-title="Show Context Menu on Right Click."
-        ></i>
-      </div>
-      <div class="form-check form-switch">
-        <input
-          v-model="options.showUpdate"
-          @change="saveOptions"
-          id="showUpdate"
-          class="form-check-input"
-          type="checkbox"
-          role="switch"
-        />
-        <label class="form-check-label" for="showUpdate">Show Release Notes on Update</label>
-        <i
-          class="fa-solid fa-circle-info p-1"
-          data-bs-toggle="tooltip"
-          data-bs-title="Show Release Notes on Version Update."
-        ></i>
-      </div>
+      </template>
     </div>
   </form>
 </template>

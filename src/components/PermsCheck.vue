@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { i18n } from '#imports'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useToast } from '@/composables/useToast.ts'
 import { clickOpen } from '@/utils/extension.ts'
@@ -24,19 +25,19 @@ const props = withDefaults(
 const hasPerms = ref(true)
 
 const manifest = chrome.runtime.getManifest()
-console.debug('host_permissions:', manifest.host_permissions)
+const host_permissions = manifest.host_permissions
+console.debug('host_permissions:', host_permissions)
 
 async function updatePerms() {
   hasPerms.value = await chrome.permissions.contains({
-    origins: manifest.host_permissions,
+    origins: host_permissions,
   })
   console.debug('updatePerms:', hasPerms.value)
 }
 
 async function grantPerms(event: Event) {
   console.debug('grantPerms:', event)
-  // noinspection ES6MissingAwait
-  requestPerms()
+  requestPerms().catch(console.log)
   if (props.closeWindow) {
     window.close()
   }
@@ -59,7 +60,7 @@ async function revokePerms(event: Event) {
 
 async function requestPerms() {
   return await chrome.permissions.request({
-    origins: manifest.host_permissions,
+    origins: host_permissions,
   })
 }
 
@@ -76,7 +77,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div>
+  <div v-if="!hasPerms || showAlert || showRemove">
     <div v-if="!hasPerms" class="text-center d-grid gap-2">
       <button
         class="btn btn-lg btn-success"
@@ -84,15 +85,15 @@ onUnmounted(() => {
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         data-bs-trigger="hover"
-        data-bs-title="This Extension Requires Host Permissions to Function."
+        :data-bs-title="i18n.t('ui.perms.grant.tip')"
         @click="grantPerms"
       >
-        <i class="fa-solid fa-check-double me-1"></i> Grant Host Permissions
+        <i class="fa-solid fa-check-double me-1"></i> {{ i18n.t('ui.perms.grant.text') }}
       </button>
       <p v-if="showInfo" class="text-center mb-0">
-        <a href="/permissions.html" target="_blank" @click.prevent="clickOpen($event, closeWindow)"
-          >More Information on Permissions</a
-        >
+        <a href="/permissions.html" target="_blank" @click.prevent="clickOpen($event, closeWindow)">{{
+          i18n.t('ui.perms.info')
+        }}</a>
       </p>
     </div>
 
@@ -105,10 +106,10 @@ onUnmounted(() => {
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         data-bs-trigger="hover"
-        data-bs-title="Google Chrome does not allow removing required permissions via this method."
+        :data-bs-title="i18n.t('ui.perms.remove.tip')"
         @click="revokePerms"
       >
-        Remove Host Permissions
+        {{ i18n.t('ui.perms.remove.text') }}
       </button>
     </div>
   </div>
