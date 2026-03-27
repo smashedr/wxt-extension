@@ -97,7 +97,9 @@ onUnmounted(() => {
       </p>
     </div>
 
-    <div v-if="hasPerms && showAlert" class="alert alert-success mt-3 mb-0" role="alert">Permissions Granted.</div>
+    <div v-if="hasPerms && showAlert" class="alert alert-success mt-3 mb-0" role="alert">
+      {{ i18n.t('ui.perms.granted') }}
+    </div>
 
     <div v-if="hasPerms && showRemove && isFirefox">
       <button
