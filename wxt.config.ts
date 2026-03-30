@@ -4,15 +4,15 @@ import { defineConfig } from 'wxt'
 //    popup/index.html
 //    sidepanel/index.html
 
-// NOTE: These are set by auto-icons but used by page_action
-const icons = {
-  16: 'icons/16.png',
-  24: 'icons/24.png',
-  32: 'icons/32.png',
-  48: 'icons/48.png',
-  96: 'icons/96.png',
-  128: 'icons/128.png',
-}
+// // NOTE: These are set by auto-icons
+// const icons = {
+//   16: 'icons/16.png',
+//   24: 'icons/24.png',
+//   32: 'icons/32.png',
+//   48: 'icons/48.png',
+//   96: 'icons/96.png',
+//   128: 'icons/128.png',
+// }
 
 // See https://wxt.dev/api/config.html
 // noinspection JSUnusedGlobalSymbols
@@ -66,12 +66,13 @@ export default defineConfig({
       //   },
       // },
 
-      // NOTE: This will not be stripped in future WXT versions...
-      page_action: {
-        default_popup: 'popup.html',
-        default_icon: icons, // TODO: Check if manifest.icons is set here...
-        show_matches: ['*://*/*'],
-      },
+      // // NOTE: This will not be stripped in future WXT versions...
+      // // NOTE: Moved to hook build:manifestGenerated to use auto-icons
+      // page_action: {
+      //   default_popup: 'popup.html',
+      //   default_icon: icons,
+      //   show_matches: ['*://*/*'],
+      // },
 
       commands: {
         _execute_action: {
@@ -115,19 +116,20 @@ export default defineConfig({
     disabled: true,
   },
 
-  // // https://wxt.dev/guide/essentials/config/hooks
-  // hooks: {
-  //   'build:manifestGenerated': (wxt, manifest) => {
-  //     console.log('wxt.config.browser', wxt.config.browser)
-  //     if (wxt.config.browser === 'firefox') {
-  //       manifest.page_action = {
-  //         default_popup: 'popup.html',
-  //         default_icon: icons,
-  //         show_matches: ['*://*/*'],
-  //       }
-  //     }
-  //   },
-  // },
+  // https://wxt.dev/guide/essentials/config/hooks
+  hooks: {
+    'build:manifestGenerated': (wxt, manifest) => {
+      console.log('wxt.config.browser', wxt.config.browser)
+      if (wxt.config.browser === 'firefox') {
+        // NOTE: This will not be stripped in future WXT versions...
+        manifest.page_action = {
+          default_popup: 'popup.html',
+          default_icon: manifest.icons,
+          show_matches: ['*://*/*'],
+        }
+      }
+    },
+  },
 
   // https://wxt.dev/guide/essentials/config/vite.html
   vite: () => ({
