@@ -40,7 +40,7 @@ console.log('manifest:', manifest)
           target="_blank"
           @click.prevent="clickOpen($event, closeWindow)"
         >
-          <img src="/images/logo32.png" alt="L" class="mb-1" style="height: 1.1em" />
+          <img :src="'/icons/32.png'" alt="L" class="mb-1" style="height: 1.1em" />
           {{ manifest.name }}</a
         >
         <a
@@ -53,7 +53,6 @@ console.log('manifest:', manifest)
           v<span class="version">{{ manifest.version }}</span></a
         >
       </div>
-      <!-- flex-grow-1 -->
 
       <div v-if="pageButton" class="ms-1">
         <a

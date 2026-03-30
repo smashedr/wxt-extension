@@ -18,7 +18,7 @@
 # WXT Extension
 
 <a title="WXT Extension" href="https://github.com/smashedr/wxt-extension?tab=readme-ov-file#readme" target="_blank">
-<img alt="WXT Extension" align="right" width="128" height="auto" src="https://raw.githubusercontent.com/smashedr/wxt-extension/master/public/images/logo128.png"></a>
+<img alt="WXT Extension" align="right" width="128" height="auto" src="https://raw.githubusercontent.com/smashedr/wxt-extension/master/src/assets/icon.svg"></a>
 
 - [Install](#install)
 - [Features](#features)

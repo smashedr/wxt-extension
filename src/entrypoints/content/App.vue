@@ -84,7 +84,7 @@ onMounted(() => {
       </p>
     </div>
     <button v-show="showIcon" class="toggle-button" @click="togglePopup()">
-      <img src="@/assets/logo.svg" alt="T" class="button-icon" />
+      <img src="@/assets/icon.svg" alt="T" class="button-icon" />
     </button>
   </div>
 </template>

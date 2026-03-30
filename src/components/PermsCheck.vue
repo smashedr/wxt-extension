@@ -87,6 +87,7 @@ onUnmounted(() => {
         data-bs-trigger="hover"
         :data-bs-title="i18n.t('ui.perms.grant.tip')"
         @click="grantPerms"
+        v-bs
       >
         <i class="fa-solid fa-check-double me-1"></i> {{ i18n.t('ui.perms.grant.text') }}
       </button>
@@ -110,6 +111,7 @@ onUnmounted(() => {
         data-bs-trigger="hover"
         :data-bs-title="i18n.t('ui.perms.remove.tip')"
         @click="revokePerms"
+        v-bs
       >
         {{ i18n.t('ui.perms.remove.text') }}
       </button>

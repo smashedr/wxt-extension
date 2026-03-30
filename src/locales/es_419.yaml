@@ -10,11 +10,6 @@ ui:
   openIssue: Reportar problema
   noTabAccess: Sin acceso a la pestaña actual.
 
-  theme:
-    dark: Oscuro
-    light: Claro
-    auto: Automático
-
   action:
     cancel: Cancelar
     close: Cerrar
@@ -43,6 +38,12 @@ ui:
       text: Eliminar permisos de host
       tip: Ya no podrás analizar imágenes nuevas
     info: Más información sobre los permisos
+
+  theme:
+    title: Selector de temas
+    dark: Oscuro
+    light: Claro
+    auto: Automático
 
 options:
   # options/App.vue
