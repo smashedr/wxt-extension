@@ -3,20 +3,30 @@ import { defineConfig } from 'wxt'
 // NOTE: Icons are also defined in <mata> tags for:
 //    popup/index.html
 //    sidepanel/index.html
+
+// NOTE: These are set by auto-icons but used by page_action
 const icons = {
-  16: 'images/logo16.png',
-  24: 'images/logo24.png',
-  32: 'images/logo32.png',
-  48: 'images/logo48.png',
-  96: 'images/logo96.png',
-  128: 'images/logo128.png',
+  16: 'icons/16.png',
+  24: 'icons/24.png',
+  32: 'icons/32.png',
+  48: 'icons/48.png',
+  96: 'icons/96.png',
+  128: 'icons/128.png',
 }
 
 // See https://wxt.dev/api/config.html
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
   srcDir: 'src',
-  modules: ['@wxt-dev/module-vue', '@wxt-dev/i18n/module'],
+  modules: ['@wxt-dev/module-vue', '@wxt-dev/i18n/module', '@wxt-dev/auto-icons'],
+
+  autoIcons: {
+    enabled: true,
+    baseIconPath: 'assets/icon.svg',
+    developmentIndicator: false,
+    // developmentIndicator: 'overlay',
+    sizes: [96, 24], // Dfault: 128, 48, 32, 16
+  },
 
   // https://wxt.dev/guide/essentials/config/auto-imports.html#disabling-auto-imports
   // imports: false,
@@ -28,10 +38,10 @@ export default defineConfig({
     console.log(`isDev: ${isDev} - isFirefox: ${isFirefox}`)
 
     return {
-      icons,
+      // icons, // @wxt-dev/auto-icons
       default_locale: 'en',
       name: '__MSG_name__',
-      // short_name: '__MSG_short_name__',
+      short_name: '__MSG_short_name__',
       description: '__MSG_description__',
 
       homepage_url: 'https://github.com/smashedr/wxt-extension',
@@ -47,18 +57,19 @@ export default defineConfig({
       // // NOTE: This is set in popup/index.html <meta>
       // action: {
       //   default_icon: {
-      //     16: 'images/logo16.png',
-      //     32: 'images/logo32.png',
-      //     48: 'images/logo48.png',
-      //     96: 'images/logo96.png',
-      //     128: 'images/logo128.png',
+      //     16: 'icons/16.png',
+      //     24: 'icons/24.png',
+      //     32: 'icons/32.png',
+      //     48: 'icons/48.png',
+      //     96: 'icons/96.png',
+      //     128: 'icons/128.png',
       //   },
       // },
 
       // NOTE: This will not be stripped in future WXT versions...
       page_action: {
         default_popup: 'popup.html',
-        default_icon: icons,
+        default_icon: icons, // TODO: Check if manifest.icons is set here...
         show_matches: ['*://*/*'],
       },
 
@@ -86,21 +97,15 @@ export default defineConfig({
             browser_specific_settings: {
               gecko: {
                 id: 'wxt-extension@cssnr.com',
-                strict_min_version: '112.0',
-                data_collection_permissions: {
-                  required: ['none'],
-                },
+                strict_min_version: '112.0', // manifest - background.type
+                data_collection_permissions: { required: ['none'] },
                 update_url:
                   'https://raw.githubusercontent.com/smashedr/wxt-extension/master/update.json',
               },
-              gecko_android: {
-                strict_min_version: '120.0',
-              },
+              gecko_android: { strict_min_version: '120.0' }, // permissions.request
             },
           }
-        : {
-            minimum_chrome_version: '127',
-          }),
+        : { minimum_chrome_version: '127' }), // chrome.action.openPopup
     }
   },
 
@@ -110,6 +115,7 @@ export default defineConfig({
     disabled: true,
   },
 
+  // // https://wxt.dev/guide/essentials/config/hooks
   // hooks: {
   //   'build:manifestGenerated': (wxt, manifest) => {
   //     console.log('wxt.config.browser', wxt.config.browser)

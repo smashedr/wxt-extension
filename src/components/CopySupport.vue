@@ -49,7 +49,7 @@ async function copySupport(event: Event) {
 <template>
   <p>
     <a id="copy-support" href="#" @click.prevent="copySupport"><slot /></a>
-    <i v-if="!isMobile" class="fa-solid fa-circle-info ms-2" data-bs-toggle="tooltip" :data-bs-title="tip"></i>
+    <i v-if="!isMobile" class="fa-solid fa-circle-info ms-2" data-bs-toggle="tooltip" :data-bs-title="tip" v-bs></i>
   </p>
 </template>
 

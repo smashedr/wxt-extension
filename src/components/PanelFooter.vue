@@ -17,7 +17,11 @@ const closeWindow = () => window.close()
       >
         <i class="fa-solid fa-gears"></i> {{ i18n.t('ui.options') }}
       </a>
-      <button title="Close" class="btn btn-sm btn-outline-warning hvr-grow-sm" @click="closeWindow()">
+      <button
+        :title="i18n.t('ui.action.close')"
+        class="btn btn-sm btn-outline-warning hvr-grow-sm"
+        @click="closeWindow()"
+      >
         <i class="fa-regular fa-circle-xmark"></i> {{ i18n.t('ui.action.close') }}
       </button>
     </div>

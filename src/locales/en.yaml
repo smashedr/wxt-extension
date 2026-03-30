@@ -10,11 +10,6 @@ ui:
   openIssue: Open Issue
   noTabAccess: No Access to the Current Tab.
 
-  theme:
-    dark: Dark
-    light: Light
-    auto: Auto
-
   action:
     cancel: Cancel
     close: Close
@@ -43,6 +38,12 @@ ui:
       text: Remove Host Permissions
       tip: You will no longer be able to analyze new images
     info: More Information on Permissions
+
+  theme:
+    title: Theme Switcher
+    dark: Dark
+    light: Light
+    auto: Auto
 
 options:
   # options/App.vue
