@@ -8,6 +8,7 @@ import PageFooter from '@/components/PageFooter.vue'
 import ButtonsList from '@/components/ButtonsList.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import OptionsOffscreen from '@/components/OptionsOffscreen.vue'
+import OptionsForm from '@/components/OptionsForm.vue'
 
 console.debug('%c page/App.vue', 'color: Lime')
 
@@ -24,6 +25,8 @@ useTitle(i18n.t('page.title'))
       <h1>{{ i18n.t('page.title') }}</h1>
       <SearchBox class="m-3" />
       <ButtonsList :page-button="false" class="m-3" />
+      <hr />
+      <OptionsForm />
     </div>
   </main>
 

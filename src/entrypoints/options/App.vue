@@ -65,13 +65,13 @@ useTitle(i18n.t('options.title'))
         <PermsCheck :show-info="true" :show-remove="isFirefox" class="my-3" />
 
         <CopySupport
-          class="fst-italic small"
+          class="fst-italic small mx-3"
           :message="i18n.t('options.copySupportMsg')"
           :tip="i18n.t('options.copySupportTip')"
           >{{ i18n.t('options.copySupport') }}</CopySupport
         >
 
-        <hr class="mt-0" />
+        <hr />
 
         <PageFooter />
       </div>

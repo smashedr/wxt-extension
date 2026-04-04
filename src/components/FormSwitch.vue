@@ -21,15 +21,17 @@ function onChange(_event: Event) {
 </script>
 
 <template>
-  <div class="form-check form-switch">
-    <input v-model="model" :id="id" @change="onChange" class="form-check-input" type="checkbox" role="switch" />
-    <label class="form-check-label" :for="id">{{ labelText }}</label>
-    <i
-      v-if="!isMobile && tooltipText"
-      class="fa-solid fa-circle-info ms-2"
-      data-bs-toggle="tooltip"
-      :data-bs-title="tooltipText"
-      v-bs
-    ></i>
+  <div>
+    <div class="form-check form-switch">
+      <input v-model="model" :id="id" @change="onChange" class="form-check-input" type="checkbox" role="switch" />
+      <label class="form-check-label" :for="id">{{ labelText }}</label>
+      <i
+        v-if="!isMobile && tooltipText"
+        class="fa-solid fa-circle-info ms-2"
+        data-bs-toggle="tooltip"
+        :data-bs-title="tooltipText"
+        v-bs
+      ></i>
+    </div>
   </div>
 </template>
