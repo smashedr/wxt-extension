@@ -44,7 +44,7 @@ function onChange(_event: Event) {
     <label for="testInput" class="form-label"><i v-if="fa" class="me-1" :class="fa"></i> {{ labelText }}</label>
     <i
       v-if="!isMobile && tooltipText"
-      class="fa-solid fa-circle-info p-1"
+      class="fa-solid fa-circle-info ms-2"
       data-bs-toggle="tooltip"
       :data-bs-title="tooltipText"
       v-bs
