@@ -28,7 +28,7 @@ useTitle(i18n.t('options.title'))
           <div>
             <a
               class="link-body-emphasis text-decoration-none fs-1"
-              :title="i18n.t('ui.homePage')"
+              :title="i18n.t('ui.text.homePage')"
               :href="manifest.homepage_url"
               target="_blank"
               rel="nofollow"
@@ -38,7 +38,7 @@ useTitle(i18n.t('options.title'))
             >
             <a
               class="link-body-emphasis text-decoration-none small"
-              :title="i18n.t('ui.releaseNotes')"
+              :title="i18n.t('ui.text.releaseNotes')"
               :href="`${manifest.homepage_url}/releases/tag/${manifest.version}`"
               target="_blank"
               rel="nofollow"
@@ -49,7 +49,7 @@ useTitle(i18n.t('options.title'))
           </div>
         </div>
 
-        <HorizontalRule>{{ i18n.t('ui.keyboard.shortcut') }}</HorizontalRule>
+        <HorizontalRule>{{ i18n.t('options.keyboard') }}</HorizontalRule>
         <KeyboardShortcuts />
 
         <HorizontalRule>{{ i18n.t('options.extension') }}</HorizontalRule>
@@ -58,9 +58,9 @@ useTitle(i18n.t('options.title'))
         <PermsCheck :show-info="true" :show-remove="isFirefox" class="my-3" />
 
         <CopySupport
+          class="fst-italic small"
           :message="i18n.t('options.copySupportMsg')"
           :tip="i18n.t('options.copySupportTip')"
-          class="fst-italic small"
           >{{ i18n.t('options.copySupport') }}</CopySupport
         >
 
@@ -68,7 +68,6 @@ useTitle(i18n.t('options.title'))
 
         <PageFooter />
       </div>
-      <!-- #options-wrapper -->
     </div>
   </div>
 

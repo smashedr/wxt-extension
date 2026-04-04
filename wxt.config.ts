@@ -43,8 +43,8 @@ export default defineConfig({
       name: '__MSG_name__',
       short_name: '__MSG_short_name__',
       description: '__MSG_description__',
-
       homepage_url: 'https://github.com/smashedr/wxt-extension',
+
       permissions: ['contextMenus', 'storage'],
       host_permissions: ['*://*/*'],
 
