@@ -1,6 +1,6 @@
 [![GitHub Downloads](https://img.shields.io/github/downloads/smashedr/wxt-extension/total?logo=github)](https://github.com/smashedr/wxt-extension/releases)
 [![GitHub Release Version](https://img.shields.io/github/v/release/smashedr/wxt-extension?logo=github)](https://github.com/smashedr/wxt-extension/releases/latest)
-[![GitHub Languages](https://img.shields.io/github/directory-file-count/smashedr/wxt-extension/src/locales?type=file&extension=yaml&logo=libretranslate&label=languages)](https://github.com/smashedr/wxt-extension/tree/master/src/locales)
+[![GitHub Locales](https://img.shields.io/github/directory-file-count/smashedr/wxt-extension/src/locales?type=file&extension=yaml&logo=libretranslate&label=locales)](https://github.com/smashedr/wxt-extension/tree/master/src/locales)
 [![Workflow Release](https://img.shields.io/github/actions/workflow/status/smashedr/wxt-extension/release.yaml?logo=norton&logoColor=white&label=release)](https://github.com/smashedr/wxt-extension/actions/workflows/release.yaml)
 [![Workflow Lint](https://img.shields.io/github/actions/workflow/status/smashedr/wxt-extension/lint.yaml?logo=norton&logoColor=white&label=lint)](https://github.com/smashedr/wxt-extension/actions/workflows/lint.yaml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/smashedr/wxt-extension?logo=listenhub&label=updated)](https://github.com/smashedr/wxt-extension/pulse)

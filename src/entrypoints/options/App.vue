@@ -24,11 +24,18 @@ useTitle(i18n.t('options.title'))
     <div class="m-auto pb-4 w-100">
       <div id="options-wrapper" class="glass-outline blur rounded rounded-3 p-2 p-sm-3 m-auto w-100">
         <div class="d-flex flex-row justify-content-center align-items-center">
-          <img :src="'/icons/48.png'" class="me-1" height="48" width="48" :alt="manifest.name" :title="manifest.name" />
+          <img
+            src="@/assets/icon.svg"
+            class="me-1"
+            height="48"
+            width="48"
+            :alt="manifest.name"
+            :title="manifest.name"
+          />
           <div>
             <a
               class="link-body-emphasis text-decoration-none fs-1"
-              :title="i18n.t('ui.homePage')"
+              :title="i18n.t('ui.text.homePage')"
               :href="manifest.homepage_url"
               target="_blank"
               rel="nofollow"
@@ -38,7 +45,7 @@ useTitle(i18n.t('options.title'))
             >
             <a
               class="link-body-emphasis text-decoration-none small"
-              :title="i18n.t('ui.releaseNotes')"
+              :title="i18n.t('ui.text.releaseNotes')"
               :href="`${manifest.homepage_url}/releases/tag/${manifest.version}`"
               target="_blank"
               rel="nofollow"
@@ -49,7 +56,7 @@ useTitle(i18n.t('options.title'))
           </div>
         </div>
 
-        <HorizontalRule>{{ i18n.t('ui.keyboard.shortcut') }}</HorizontalRule>
+        <HorizontalRule>{{ i18n.t('options.keyboard') }}</HorizontalRule>
         <KeyboardShortcuts />
 
         <HorizontalRule>{{ i18n.t('options.extension') }}</HorizontalRule>
@@ -58,17 +65,16 @@ useTitle(i18n.t('options.title'))
         <PermsCheck :show-info="true" :show-remove="isFirefox" class="my-3" />
 
         <CopySupport
+          class="fst-italic small mx-3"
           :message="i18n.t('options.copySupportMsg')"
           :tip="i18n.t('options.copySupportTip')"
-          class="fst-italic small"
           >{{ i18n.t('options.copySupport') }}</CopySupport
         >
 
-        <hr class="mt-0" />
+        <hr />
 
         <PageFooter />
       </div>
-      <!-- #options-wrapper -->
     </div>
   </div>
 

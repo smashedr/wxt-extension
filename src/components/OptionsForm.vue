@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { i18n } from '#imports'
-import { saveKeyValue } from '@/utils/options.ts'
 import { useOptions } from '@/composables/useOptions.ts'
 import FormSwitch from '@/components/FormSwitch.vue'
+import FormInput from '@/components/FormInput.vue'
 
 withDefaults(
   defineProps<{
@@ -22,53 +21,36 @@ const options = useOptions()
 
 <template>
   <form>
-    <div v-if="show.includes('inputs')" class="row m-0">
-      <div :class="compact ? 'col-12 col-sm-6' : 'col-12 col-sm-8'">
-        <label for="testInput" class="form-label"><i class="fa-regular fa-keyboard me-1"></i> Test Input</label>
-        <i class="fa-solid fa-circle-info p-1" data-bs-toggle="tooltip" data-bs-title="Example Text Input." v-bs></i>
-        <input
-          v-model="options.testInput"
-          @change="saveKeyValue('testInput', options.testInput)"
-          id="testInput"
-          aria-describedby="testInputHelp"
-          type="text"
-          class="form-control"
-          autocomplete="off"
-        />
-        <div class="form-text" :class="{ 'visually-hidden': compact }" id="testInputHelp">Just a test text input.</div>
+    <template v-if="show.includes('inputs')">
+      <div :class="show.includes('switches') ? 'mb-2' : ''">
+        <div class="row m-0">
+          <FormInput
+            v-model="options.testInput"
+            id="testInput"
+            :class="compact ? 'col-12 col-sm-6' : 'col-12 col-sm-8'"
+            fa="fa-regular fa-keyboard"
+          />
+          <FormInput
+            v-model="options.testNumber"
+            id="testNumber"
+            :class="compact ? 'col-12 col-sm-6' : 'col-12 col-sm-4'"
+            fa="fa-solid fa-hashtag"
+            type="number"
+            step="5"
+            min="5"
+            max="360"
+          />
+        </div>
       </div>
-      <div :class="compact ? 'col-12 col-sm-6' : 'col-12 col-sm-4'">
-        <label for="testNumber" class="form-label"><i class="fa-solid fa-hashtag me-1"></i> Number</label>
-        <i class="fa-solid fa-circle-info p-1" data-bs-toggle="tooltip" data-bs-title="Example Number Input." v-bs></i>
-        <input
-          v-model="options.testNumber"
-          @change="saveKeyValue('testNumber', options.testNumber)"
-          id="testNumber"
-          aria-describedby="testNumberHelp"
-          type="number"
-          step="5"
-          min="5"
-          max="360"
-          class="form-control"
-          autocomplete="off"
-          placeholder="Minutes"
-        />
-        <div class="form-text" :class="{ 'visually-hidden': compact }" id="testNumberHelp">A number 5-360.</div>
-      </div>
-    </div>
+    </template>
 
-    <!-- switches -->
-    <div v-if="show.includes('switches')" class="row m-0">
-      <template v-for="id in switches" :key="id">
-        <FormSwitch
-          :id="id"
-          :value="!!options[id]"
-          :tooltip="i18n.t(`option.toggle.${id}.tip` as any)"
-          :class="{ 'col-12': true, 'col-sm-6': !compact }"
-          @change="saveKeyValue"
-        />
-      </template>
-    </div>
+    <template v-if="show.includes('switches')">
+      <div class="row m-0">
+        <template v-for="id in switches" :key="id">
+          <FormSwitch :id="id" v-model="options[id]" :class="{ 'col-12': true, 'col-sm-6': !compact }" />
+        </template>
+      </div>
+    </template>
   </form>
 </template>
 
