@@ -1,19 +1,5 @@
 import { defineConfig } from 'wxt'
 
-// NOTE: Icons are also defined in <mata> tags for:
-//    popup/index.html
-//    sidepanel/index.html
-
-// // NOTE: These are set by auto-icons
-// const icons = {
-//   16: 'icons/16.png',
-//   24: 'icons/24.png',
-//   32: 'icons/32.png',
-//   48: 'icons/48.png',
-//   96: 'icons/96.png',
-//   128: 'icons/128.png',
-// }
-
 // See https://wxt.dev/api/config.html
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
@@ -52,26 +38,6 @@ export default defineConfig({
       // options_ui: {
       //   page: 'options.html',
       //   open_in_tab: true,
-      // },
-
-      // // NOTE: This is set in popup/index.html <meta>
-      // action: {
-      //   default_icon: {
-      //     16: 'icons/16.png',
-      //     24: 'icons/24.png',
-      //     32: 'icons/32.png',
-      //     48: 'icons/48.png',
-      //     96: 'icons/96.png',
-      //     128: 'icons/128.png',
-      //   },
-      // },
-
-      // // NOTE: This will not be stripped in future WXT versions...
-      // // NOTE: Moved to hook build:manifestGenerated to use auto-icons
-      // page_action: {
-      //   default_popup: 'popup.html',
-      //   default_icon: icons,
-      //   show_matches: ['*://*/*'],
       // },
 
       commands: {
@@ -119,7 +85,9 @@ export default defineConfig({
   // https://wxt.dev/guide/essentials/config/hooks
   hooks: {
     'build:manifestGenerated': (wxt, manifest) => {
-      console.log('wxt.config.browser', wxt.config.browser)
+      console.log('build:manifestGenerated:', wxt.config.browser)
+      if (manifest.action) manifest.action.default_icon = manifest.icons
+      if (manifest.sidebar_action) manifest.sidebar_action.default_icon = manifest.icons
       if (wxt.config.browser === 'firefox') {
         // NOTE: This will not be stripped in future WXT versions...
         manifest.page_action = {
