@@ -17,9 +17,10 @@ const props = withDefaults(
 async function copySupport(event: Event) {
   console.debug('copySupport:', event)
   event.preventDefault()
-  const manifest = chrome.runtime.getManifest()
   const date = new Date()
+  const manifest = chrome.runtime.getManifest()
   const permissions = await chrome.permissions.getAll()
+  const userSettings = await chrome.action.getUserSettings()
   const options = await getOptions()
   const local = await chrome.storage.local.get()
 
@@ -34,6 +35,7 @@ async function copySupport(event: Event) {
     `options: ${JSON.stringify(options)}`,
     `local: ${JSON.stringify(local)}`,
     `language: ${chrome.i18n.getUILanguage()}`,
+    `pinned: ${userSettings.isOnToolbar}`,
     `isFirefox: ${isFirefox}`,
     `isMobile: ${isMobile}`,
   ]

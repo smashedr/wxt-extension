@@ -29,16 +29,10 @@ export default defineConfig({
       name: '__MSG_name__',
       short_name: '__MSG_short_name__',
       description: '__MSG_description__',
-      homepage_url: 'https://github.com/smashedr/wxt-extension',
 
+      homepage_url: 'https://github.com/smashedr/wxt-extension',
       permissions: ['contextMenus', 'storage'],
       host_permissions: ['*://*/*'],
-
-      // // NOTE: This is set in options/index.html <meta>
-      // options_ui: {
-      //   page: 'options.html',
-      //   open_in_tab: true,
-      // },
 
       commands: {
         _execute_action: {
