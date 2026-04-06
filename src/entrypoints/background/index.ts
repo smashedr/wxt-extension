@@ -90,10 +90,10 @@ async function onStartup() {
 }
 
 function onChanged(changes: Record<string, chrome.storage.StorageChange>) {
-  console.log('%c background/index.ts - onChanged:', 'color: Cyan')
+  console.log('%c background/index.ts - onChanged:', 'color: Cyan', changes)
   // process and type options
-  const oldValue = changes.options.oldValue as Options | undefined
-  const newValue = changes.options.newValue as Options | undefined
+  const oldValue = changes.options?.oldValue as Options | undefined
+  const newValue = changes.options?.newValue as Options | undefined
   // if (!oldValue || !newValue) return console.log('missing oldValue or newValue')
   if (!oldValue) return console.log('onChanged: missing options oldValue')
   if (!newValue) return console.warn('onChanged: missing options newValue')
