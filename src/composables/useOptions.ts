@@ -7,12 +7,12 @@ export function useOptions(): Ref<Options> {
 
   const listener = async () => (options.value = await getOptions())
 
-  if (!chrome.storage.onChanged.hasListener(listener)) {
-    chrome.storage.onChanged.addListener(listener)
+  if (!chrome.storage.sync.onChanged.hasListener(listener)) {
+    chrome.storage.sync.onChanged.addListener(listener)
   }
 
   onMounted(() => getOptions().then((results) => (options.value = results)))
-  onUnmounted(() => chrome.storage.onChanged.removeListener(listener))
+  onUnmounted(() => chrome.storage.sync.onChanged.removeListener(listener))
 
   return options
 }
