@@ -3,7 +3,7 @@ import { i18n } from '#imports'
 import { onMounted, ref } from 'vue'
 import { getOptions } from '@/utils/options.ts'
 
-chrome.storage.onChanged.addListener(onChanged)
+chrome.storage.sync.onChanged.addListener(onChanged)
 
 window.addEventListener('keydown', handleKeyboard)
 
@@ -16,16 +16,12 @@ const toggleIcon = () => {
   if (!showIcon.value) showPopup.value = false
 }
 
-function onChanged(changes: object, namespace: string) {
-  console.log('onChanged:', changes)
-  // for (const [key, _] of Object.entries(changes)) {
-  for (const [key, { oldValue, newValue }] of Object.entries(changes)) {
-    console.debug('onChanged:', namespace, key)
-    if (namespace === 'sync' && key === 'options') {
-      if (oldValue.siteIcon !== newValue.siteIcon) {
-        showIcon.value = newValue.siteIcon
-      }
-    }
+async function onChanged(changes: Record<string, any>) {
+  console.debug('content/index.ts - onChanged:', changes)
+  const items = changes.options // NOTE: Lazy Typing... in changes
+  console.debug('items:', items)
+  if (items?.oldValue.siteIcon !== items?.newValue.siteIcon) {
+    showIcon.value = items.newValue.siteIcon
   }
 }
 

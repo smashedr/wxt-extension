@@ -15,9 +15,7 @@ const contexts: chrome.contextMenus.CreateProperties[] = config.map((entry) => (
 
 export function createContextMenus() {
   console.debug('createContextMenus')
-  if (!chrome.contextMenus) {
-    return console.debug('Skipping: chrome.contextMenus')
-  }
+  if (!chrome.contextMenus) return console.debug('Skipping: chrome.contextMenus')
   chrome.contextMenus.removeAll().then(() => {
     contexts.forEach((item) => chrome.contextMenus.create(item))
   })

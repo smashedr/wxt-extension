@@ -1,21 +1,24 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-/**
- * Mount the Vue app to the DOM.
- */
-function mountApp() {
-  const container = document.createElement('div')
-  container.id = 'content-app'
-  document.body.appendChild(container)
-  const app = createApp(App)
-  app.mount(container)
-}
-
 export default defineContentScript({
   matches: ['*://*/*'],
-  main() {
-    console.log(`%c ${chrome.runtime.id}: content/index.ts`, 'color: Lime')
-    mountApp()
+
+  main(ctx) {
+    console.log(`%c ${chrome.runtime.id} - Loaded: content/index.ts`, 'color: Lime', ctx)
+    // noinspection JSUnusedGlobalSymbols
+    const ui = createIntegratedUi(ctx, {
+      position: 'inline',
+      anchor: 'body',
+      onMount: (container) => {
+        const app = createApp(App)
+        app.mount(container)
+        return app
+      },
+      onRemove: (app) => {
+        app?.unmount()
+      },
+    })
+    ui.mount()
   },
 })
