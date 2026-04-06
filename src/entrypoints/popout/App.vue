@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { debounce } from '@/utils'
+import { debounce } from '@/utils/index.ts'
 import { useTitle } from '@/composables/useTitle.ts'
 import ButtonsList from '@/components/ButtonsList.vue'
 import ToastAlerts from '@/components/ToastAlerts.vue'
@@ -12,6 +12,8 @@ import PermsCheck from '@/components/PermsCheck.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 
 console.debug('%c popout/App.vue', 'color: Lime')
+
+useTitle('Panel')
 
 async function windowResize() {
   const size = { panelWidth: window.outerWidth, panelHeight: window.outerHeight }
@@ -28,8 +30,6 @@ onMounted(() => {
     })
   })
 })
-
-useTitle('Panel')
 </script>
 
 <template>
