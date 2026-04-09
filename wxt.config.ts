@@ -9,8 +9,7 @@ export default defineConfig({
   autoIcons: {
     enabled: true,
     baseIconPath: 'assets/icon.svg',
-    developmentIndicator: false,
-    // developmentIndicator: 'overlay',
+    developmentIndicator: false, // 'overlay' | false
     sizes: [96, 24], // Dfault: 128, 48, 32, 16
   },
 
@@ -24,7 +23,6 @@ export default defineConfig({
     console.log(`isDev: ${isDev} - isFirefox: ${isFirefox}`)
 
     return {
-      // icons, // @wxt-dev/auto-icons
       default_locale: 'en',
       name: '__MSG_name__',
       short_name: '__MSG_short_name__',

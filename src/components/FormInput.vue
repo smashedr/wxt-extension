@@ -33,10 +33,6 @@ const labelText = computed(() => props.label || i18n.t(`option.input.${props.id}
 const placeholderText = computed(() => props.label || i18n.t(`option.input.${props.id}.placeholder` as any))
 const tooltipText = computed(() => props.tooltip || i18n.t(`option.input.${props.id}.tooltip` as any))
 const helpText = computed(() => props.help || i18n.t(`option.input.${props.id}.help` as any))
-
-function onChange(_event: Event) {
-  saveKeyValue(props.id, model.value)
-}
 </script>
 
 <template>
@@ -52,7 +48,7 @@ function onChange(_event: Event) {
     <input
       v-model="model"
       :id="id"
-      @change="onChange"
+      @change="saveKeyValue(id, model)"
       :aria-describedby="`${id}-help`"
       :type="type"
       :placeholder="placeholderText"
