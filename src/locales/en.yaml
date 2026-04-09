@@ -22,6 +22,29 @@ ui:
     releaseNotes: Release Notes
     requestFeature: Request Feature
 
+cmd:
+  # wxt.config.ts
+  executeAction: Open Popup
+  openSidePanel: Open Side Panel
+  openExtPanel: Open Extension Panel
+  openOptions: Open Options
+
+ctx:
+  # background/menus.ts
+  openPopup: Open Popup
+  openSidePanel: Open Side Panel
+  openExtPanel: Open Extension Panel
+  openOptions: Open Options
+
+# Entrypoints
+
+content:
+  # content/index.ts
+  press: Press the
+  toggle: key to toggle the icon.
+  key:
+    toggle: T
+
 options:
   # options/App.vue
   title: Options
@@ -36,30 +59,11 @@ permissions:
   title: Permissions
   reason: To demonstrate the permissions check, host permissions are required.
 
-content:
-  # content/index.ts
-  press: Press the
-  toggle: key to toggle the icon.
-  key:
-    toggle: T
-
-ctx:
-  # background/menus.ts
-  openPopup: Open Popup
-  openSidePanel: Open Side Panel
-  openExtPanel: Open Extension Panel
-  openOptions: Open Options
-
-cmd:
-  # wxt.config.ts
-  executeAction: Open Popup
-  openSidePanel: Open Side Panel
-  openExtPanel: Open Extension Panel
-  openOptions: Open Options
-
 page:
   # page/App.vue
   title: Page
+
+# Components
 
 keyboard:
   # components/KeyboardShortcuts.vue
@@ -88,8 +92,9 @@ theme:
   light: Light
   auto: Auto
 
+# Options
+
 option:
-  # components/FormSwitch.vue
   toggle:
     siteIcon:
       label: Site Icon

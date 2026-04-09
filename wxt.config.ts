@@ -24,7 +24,6 @@ export default defineConfig({
     console.log(`isDev: ${isDev} - isFirefox: ${isFirefox}`)
 
     return {
-      // icons, // @wxt-dev/auto-icons
       default_locale: 'en',
       name: '__MSG_name__',
       short_name: '__MSG_short_name__',

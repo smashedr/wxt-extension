@@ -14,16 +14,19 @@ const props = defineProps<{
 
 const labelText = computed(() => props.label || i18n.t(`option.toggle.${props.id}.label` as any))
 const tooltipText = computed(() => props.tooltip || i18n.t(`option.toggle.${props.id}.tip` as any))
-
-function onChange(_event: Event) {
-  saveKeyValue(props.id, model.value)
-}
 </script>
 
 <template>
   <div>
     <div class="form-check form-switch">
-      <input v-model="model" :id="id" @change="onChange" class="form-check-input" type="checkbox" role="switch" />
+      <input
+        v-model="model"
+        :id="id"
+        @change="saveKeyValue(id, model)"
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+      />
       <label class="form-check-label" :for="id">{{ labelText }}</label>
       <i
         v-if="!isMobile && tooltipText"
