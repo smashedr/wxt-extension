@@ -2,15 +2,16 @@
 import { useOptions } from '@/composables/useOptions.ts'
 import FormSwitch from '@/components/FormSwitch.vue'
 import FormInput from '@/components/FormInput.vue'
+import HorizontalRule from '@/components/HorizontalRule.vue'
 
 withDefaults(
   defineProps<{
     compact?: boolean
     show?: string[]
+    showHeading?: boolean
     switches?: string[]
   }>(),
   {
-    compact: false,
     show: () => ['inputs', 'switches'],
     switches: () => ['siteIcon', 'contextMenu', 'showUpdate'],
   },
@@ -20,6 +21,7 @@ const options = useOptions()
 </script>
 
 <template>
+  <HorizontalRule v-if="showHeading">{{ i18n.t('options.extension') }}</HorizontalRule>
   <form>
     <template v-if="show.includes('inputs')">
       <div :class="show.includes('switches') ? 'mb-2' : ''">
