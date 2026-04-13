@@ -27,17 +27,10 @@ async function onChanged(changes: Record<string, any>) {
 
 function handleKeyboard(e: KeyboardEvent) {
   // console.debug('handleKeyboard:', e)
-  if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.repeat) {
-    return
-  }
-  // if (e.code === 'Escape') {
-  //   e.preventDefault()
-  //   e.target?.blur()
-  // }
   const target = e.target as HTMLInputElement
-  if (['INPUT', 'TEXTAREA', 'SELECT', 'OPTION'].includes(target?.tagName)) {
-    return
-  }
+  if (['INPUT', 'TEXTAREA', 'SELECT', 'OPTION'].includes(target?.tagName)) return
+  if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.repeat) return
+  if (e.key.length !== 1 || e.key === ' ') return
   if (['KeyT'].includes(e.code)) {
     console.log('Pressed T')
     toggleIcon()
@@ -65,9 +58,7 @@ onMounted(() => {
   // console.debug('onMounted')
   getOptions().then((options) => {
     // console.debug('options:', options)
-    if (options.siteIcon) {
-      toggleIcon()
-    }
+    if (options.siteIcon) toggleIcon()
   })
 })
 </script>
