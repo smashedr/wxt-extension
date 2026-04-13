@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { i18n } from '#imports'
 import { onMounted, ref } from 'vue'
-import { clickOpen } from '@/utils/extension.ts'
 import { isFirefox } from '@/utils/system.ts'
+import { clickOpen } from '@/utils/extension.ts'
+import HorizontalRule from '@/components/HorizontalRule.vue'
 
 defineProps<{
+  hideHeading?: boolean
   hideLink?: boolean
   linkMt?: string
 }>()
@@ -19,14 +21,16 @@ onMounted(async () => {
   const notSet = i18n.t('keyboard.notSet')
   const result = await chrome.commands.getAll()
   commands.value = result.map(({ description, name, shortcut }) => ({
-    description: description ?? (name === '_execute_action' ? i18n.t('cmd.executeAction') : notSet),
+    description: description || (name === '_execute_action' ? i18n.t('cmd.executeAction') : notSet),
     shortcut: shortcut || notSet,
   }))
 })
 </script>
 
 <template>
-  <div v-if="hasCommands">
+  <template v-if="hasCommands">
+    <HorizontalRule v-if="!hideHeading" class="my-2">{{ i18n.t('keyboard.shortcuts') }}</HorizontalRule>
+
     <table class="table table-sm rounded table-borderless table-hover transparent-table mb-0">
       <caption class="visually-hidden">
         {{
@@ -51,30 +55,38 @@ onMounted(async () => {
         </tr>
       </tbody>
     </table>
-  </div>
 
-  <div v-if="!hideLink" :class="linkMt || `mt-2`">
-    {{ i18n.t('keyboard.manage') }}:
-    <a
-      v-if="isFirefox"
-      class="text-decoration-none d-inline-block firefox"
-      href="https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox"
-      target="_blank"
-      rel="noopener"
-      @click.prevent="clickOpen"
-    >
-      https://mzl.la/3Qwp5QQ
-      <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i
-    ></a>
-    <a v-else id="chrome-shortcuts" class="d-inline-block chrome" role="button" @click="openChromeShortcuts"
-      >chrome://extensions/shortcuts</a
-    >
-  </div>
+    <div v-if="!hideLink" :class="linkMt || `mt-2`">
+      {{ i18n.t('keyboard.manage') }}:
+      <a
+        v-if="isFirefox"
+        class="text-decoration-none d-inline-block firefox"
+        href="https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox"
+        target="_blank"
+        rel="noopener"
+        @click.prevent="clickOpen"
+      >
+        https://mzl.la/3Qwp5QQ
+        <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i
+      ></a>
+      <a
+        v-if="!isFirefox"
+        id="chrome-shortcuts"
+        class="d-inline-block chrome"
+        role="button"
+        @click="openChromeShortcuts"
+        >chrome://extensions/shortcuts</a
+      >
+    </div>
+  </template>
 </template>
 
 <!--<style scoped>-->
 <!--#table td:first-child {-->
 <!--  width: 100%;-->
 <!--  max-width: 0;-->
+<!--}-->
+<!--table {-->
+<!--  border-collapse: separate;-->
 <!--}-->
 <!--</style>-->

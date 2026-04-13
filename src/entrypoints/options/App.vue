@@ -9,7 +9,6 @@ import ToastAlerts from '@/components/ToastAlerts.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 import KeyboardShortcuts from '@/components/KeyboardShortcuts.vue'
 import PageFooter from '@/components/PageFooter.vue'
-import HorizontalRule from '@/components/HorizontalRule.vue'
 import CopySupport from '@/components/CopySupport.vue'
 
 console.debug('%c options/App.vue', 'color: Lime')
@@ -20,9 +19,9 @@ useTitle(i18n.t('options.title'))
 </script>
 
 <template>
-  <div class="d-flex align-items-center justify-content-center p-1 p-sm-3 h-100 w-100">
+  <div class="d-flex align-items-center justify-content-center h-100 w-100 p-1 p-sm-3">
     <div class="m-auto pb-4 w-100">
-      <div id="options-wrapper" class="glass-outline blur rounded rounded-3 p-2 p-sm-3 m-auto w-100">
+      <div id="options-wrapper" class="glass-outline rounded rounded-3 w-100 m-auto p-2 p-sm-3">
         <div class="d-flex flex-row justify-content-center align-items-center">
           <img
             src="@/assets/icon.svg"
@@ -56,11 +55,9 @@ useTitle(i18n.t('options.title'))
           </div>
         </div>
 
-        <HorizontalRule>{{ i18n.t('options.keyboard') }}</HorizontalRule>
         <KeyboardShortcuts />
 
-        <HorizontalRule>{{ i18n.t('options.extension') }}</HorizontalRule>
-        <OptionsForm />
+        <OptionsForm :show-heading="true" />
 
         <PermsCheck :show-info="true" :show-remove="isFirefox" class="my-3" />
 
@@ -82,4 +79,8 @@ useTitle(i18n.t('options.title'))
   <BackToTop />
 </template>
 
-<!--<style scoped></style>-->
+<style scoped>
+#options-wrapper {
+  max-width: 767px;
+}
+</style>
