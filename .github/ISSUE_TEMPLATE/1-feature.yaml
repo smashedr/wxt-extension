@@ -1,6 +1,5 @@
 name: "💡 Request a Feature"
 description: "Request new features or enhancements"
-#type: "feature"
 labels: ["enhancement"]
 assignees:
   - smashedr
