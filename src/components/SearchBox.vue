@@ -57,5 +57,3 @@ async function processForm(event: Event) {
     </form>
   </div>
 </template>
-
-<!--<style scoped></style>-->
