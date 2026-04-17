@@ -28,7 +28,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <template v-if="hasCommands">
+  <div v-if="hasCommands">
     <HorizontalRule v-if="!hideHeading" class="my-2">{{ i18n.t('keyboard.shortcuts') }}</HorizontalRule>
 
     <table class="table table-sm rounded table-borderless table-hover transparent-table mb-0">
@@ -78,7 +78,7 @@ onMounted(async () => {
         >chrome://extensions/shortcuts</a
       >
     </div>
-  </template>
+  </div>
 </template>
 
 <!--<style scoped>-->

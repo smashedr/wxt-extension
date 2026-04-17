@@ -1,3 +1,5 @@
+import { defineContentScript } from 'wxt/utils/define-content-script'
+import { createIntegratedUi } from 'wxt/utils/content-script-ui/integrated'
 import { createApp } from 'vue'
 import App from './App.vue'
 

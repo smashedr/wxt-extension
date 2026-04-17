@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { i18n } from '#imports'
 import { useOptions } from '@/composables/useOptions.ts'
 import FormSwitch from '@/components/FormSwitch.vue'
 import FormInput from '@/components/FormInput.vue'
@@ -55,5 +56,3 @@ const options = useOptions()
     </template>
   </form>
 </template>
-
-<!--<style scoped></style>-->

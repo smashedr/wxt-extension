@@ -17,7 +17,7 @@ useTitle(i18n.t('page.title'))
 
 <template>
   <header class="flex-shrink-0">
-    <PanelHeader />
+    <PanelHeader :page-button="false" />
   </header>
 
   <main class="flex-grow-1 overflow-auto">
