@@ -3,7 +3,7 @@ import { isFirefox } from '@/utils/system.ts'
 import { defineBackground } from 'wxt/utils/define-background'
 import { openExtPanel, openPopup, openSidePanel } from '@/utils/extension.ts'
 import { type Options, defaultOptions, getOptions } from '@/utils/options.ts'
-import { createContextMenus } from './menus.ts'
+import { updateContextMenus } from './menus.ts'
 
 export default defineBackground(() => {
   console.log(`Loaded: %c${chrome.runtime.id}`, 'Color: Cyan')
@@ -21,7 +21,7 @@ async function onInstalled(details: chrome.runtime.InstalledDetails) {
 
   const options = await setDefaultOptions(defaultOptions)
   console.debug('options:', options)
-  if (options.contextMenu) createContextMenus()
+  updateContextMenus(options.contextMenu)
   setUninstall().catch(console.warn)
 
   const manifest = chrome.runtime.getManifest()
@@ -54,7 +54,7 @@ async function onStartup() {
     // NOTE: Confirm these checks are still necessary...
     const options = await getOptions()
     console.debug('options:', options)
-    if (options.contextMenu) createContextMenus()
+    updateContextMenus(options.contextMenu)
     setUninstall().catch(console.warn)
   }
 }
@@ -69,13 +69,7 @@ function onChanged(changes: Record<string, chrome.storage.StorageChange>) {
   if (!newValue) return console.warn('onChanged: missing options newValue')
 
   if (oldValue?.contextMenu !== newValue.contextMenu) {
-    if (newValue.contextMenu) {
-      console.log('%c Enabled contextMenu...', 'color: Lime')
-      createContextMenus()
-    } else {
-      console.log('%c Disabled contextMenu...', 'color: OrangeRed')
-      chrome.contextMenus?.removeAll().catch(console.warn)
-    }
+    updateContextMenus(newValue.contextMenu)
   }
 }
 
