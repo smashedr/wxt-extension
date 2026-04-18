@@ -12,7 +12,6 @@ const closeWindow = () => window.close()
         :title="i18n.t('ui.text.options')"
         class="btn btn-sm btn-outline-info hvr-grow-sm"
         href="/options.html"
-        target="_blank"
         @click.prevent="openOptions()"
       >
         <i class="fa-solid fa-gears"></i> {{ i18n.t('ui.text.options') }}
