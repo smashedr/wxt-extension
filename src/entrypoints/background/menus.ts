@@ -20,7 +20,8 @@ export function updateContextMenus(enabled?: boolean) {
   if (!chrome.contextMenus) return console.debug('Skipping: chrome.contextMenus')
   chrome.contextMenus.removeAll().then(() => {
     contexts.forEach((item) => {
-      if (!enabled) item.contexts = ['action']
+      // TODO: Do not mutate item.contexts in-place...
+      // if (!enabled && item.contexts?.includes('all')) item.contexts = ['action']
       // console.log('item:', item)
       chrome.contextMenus.create(item)
     })
