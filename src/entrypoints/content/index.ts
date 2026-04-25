@@ -7,7 +7,7 @@ export default defineContentScript({
   matches: ['*://*/*'],
 
   main(ctx) {
-    console.log(`%c ${chrome.runtime.id} - Loaded: content/index.ts`, 'color: Lime', ctx)
+    console.log(`%c ${chrome.runtime.id} - Loaded: content/index.ts`, 'color: Cyan', ctx)
     // noinspection JSUnusedGlobalSymbols
     const ui = createIntegratedUi(ctx, {
       position: 'inline',

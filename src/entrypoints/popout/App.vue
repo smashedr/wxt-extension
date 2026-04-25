@@ -11,6 +11,8 @@ import PanelFooter from '@/components/PanelFooter.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 
+console.debug('%cLOADED popout/App.vue', 'color: Orange')
+
 useTitle(i18n.t('ui.action.extensionPanel'))
 
 async function windowResize() {

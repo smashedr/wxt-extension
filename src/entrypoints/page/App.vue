@@ -10,7 +10,7 @@ import SearchBox from '@/components/SearchBox.vue'
 import OptionsOffscreen from '@/components/OptionsOffscreen.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 
-console.debug('%c page/App.vue', 'color: Lime')
+console.debug('%cLOADED page/App.vue', 'color: Orange')
 
 useTitle(i18n.t('page.title'))
 </script>
