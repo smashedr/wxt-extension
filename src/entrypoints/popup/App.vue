@@ -8,7 +8,7 @@ import OptionsForm from '@/components/OptionsForm.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import ButtonsList from '@/components/ButtonsList.vue'
 
-console.debug('%c popup/App.vue', 'color: Lime')
+console.debug('%cLOADED popup/App.vue', 'color: Orange')
 
 const isBrowser = isFirefox ? '420px' : null
 const width = computed(() => (isMobile ? '100%' : isBrowser))

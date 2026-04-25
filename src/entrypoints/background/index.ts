@@ -21,7 +21,7 @@ async function onInstalled(details: chrome.runtime.InstalledDetails) {
 
   const options = await setDefaultOptions(defaultOptions)
   console.debug('options:', options)
-  updateContextMenus(options.contextMenu)
+  updateContextMenus(options.contextMenu).catch(console.warn)
   setUninstall().catch(console.warn)
 
   const manifest = chrome.runtime.getManifest()
@@ -54,22 +54,23 @@ async function onStartup() {
     // NOTE: Confirm these checks are still necessary...
     const options = await getOptions()
     console.debug('options:', options)
-    updateContextMenus(options.contextMenu)
+    updateContextMenus(options.contextMenu).catch(console.warn)
     setUninstall().catch(console.warn)
   }
 }
 
 function onChanged(changes: Record<string, chrome.storage.StorageChange>) {
-  console.log('%c background/index.ts - onChanged:', 'color: Cyan', changes)
-  // process and type options
-  const oldValue = changes.options?.oldValue as Options | undefined
-  const newValue = changes.options?.newValue as Options | undefined
-  // if (!oldValue || !newValue) return console.log('missing oldValue or newValue')
-  if (!oldValue) return console.log('onChanged: missing options oldValue')
-  if (!newValue) return console.warn('onChanged: missing options newValue')
+  // console.log('%c background/index.ts - onChanged:', 'color: Cyan', changes)
+  if (changes?.options) {
+    const oldValue = changes.options?.oldValue as Options | undefined
+    const newValue = changes.options?.newValue as Options | undefined
+    // if (!oldValue || !newValue) return console.log('missing oldValue or newValue')
+    if (!oldValue) return console.log('onChanged: missing options oldValue')
+    if (!newValue) return console.warn('onChanged: missing options newValue')
 
-  if (oldValue?.contextMenu !== newValue.contextMenu) {
-    updateContextMenus(newValue.contextMenu)
+    if (oldValue?.contextMenu !== newValue.contextMenu) {
+      updateContextMenus(newValue.contextMenu).catch(console.warn)
+    }
   }
 }
 

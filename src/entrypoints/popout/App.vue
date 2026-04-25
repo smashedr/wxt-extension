@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { debounce } from '@/utils/index.ts'
 import { useTitle } from '@/composables/useTitle.ts'
 import ButtonsList from '@/components/ButtonsList.vue'
@@ -11,25 +11,27 @@ import PanelFooter from '@/components/PanelFooter.vue'
 import PermsCheck from '@/components/PermsCheck.vue'
 import OptionsForm from '@/components/OptionsForm.vue'
 
-console.debug('%c popout/App.vue', 'color: Lime')
+console.debug('%cLOADED popout/App.vue', 'color: Orange')
 
-useTitle('Panel')
+useTitle(i18n.t('ui.action.extensionPanel'))
 
 async function windowResize() {
   const size = { panelWidth: window.outerWidth, panelHeight: window.outerHeight }
   console.debug('windowResize:', size)
-  await chrome.storage.local.set(size).catch((e) => console.warn(e))
+  await chrome.storage.local.set(size).catch(console.warn)
 }
 
-onMounted(() => {
-  window.addEventListener('resize', debounce(windowResize))
+const debounceWindowResize = debounce(windowResize, 600)
 
+onMounted(() => {
+  window.addEventListener('resize', debounceWindowResize)
   chrome.windows.getCurrent().then((window) => {
     chrome.storage.local.set({ lastPanelID: window.id }).then(() => {
-      console.debug(`%c Set lastPanelID: ${window.id}`, 'color: Aqua')
+      console.debug('%cSet lastPanelID:', 'color: SpringGreen', window.id)
     })
   })
 })
+onUnmounted(() => window.removeEventListener('resize', debounceWindowResize))
 </script>
 
 <template>

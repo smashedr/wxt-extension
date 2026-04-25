@@ -3,6 +3,8 @@ import { i18n } from '#imports'
 import { onMounted, ref } from 'vue'
 import { getOptions } from '@/utils/options.ts'
 
+console.debug('%cLOADED content/App.vue', 'color: Orange')
+
 chrome.storage.sync.onChanged.addListener(onChanged)
 
 window.addEventListener('keydown', handleKeyboard)

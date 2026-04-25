@@ -10,7 +10,7 @@ export function openSidePanel(close?: boolean) {
         .then(() => {
           if (close) window.close()
         })
-        .catch((e) => console.warn(e))
+        .catch(console.warn)
     })
   } else if (chrome.sidebarAction) {
     console.debug('chrome.sidebarAction')
@@ -28,7 +28,7 @@ export function openOptions(close = false) {
     .then(() => {
       if (close) window.close()
     })
-    .catch((e) => console.warn(e))
+    .catch(console.warn)
 }
 
 export async function openPage(close = false, path = 'page.html') {
@@ -55,10 +55,7 @@ export async function openExtPanel(close = false) {
   const [defaultWidth, defaultHeight] = [390, 600]
   const type = chrome.windows.CreateType.POPUP
 
-  if (!chrome.windows) {
-    console.log('Browser does not support: chrome.windows')
-    return
-  }
+  if (!chrome.windows) return console.log('Browser does not support: chrome.windows')
 
   const local = await chrome.storage.local.get([
     'lastPanelID',

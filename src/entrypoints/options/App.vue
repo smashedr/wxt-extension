@@ -11,7 +11,7 @@ import PageFooter from '@/components/PageFooter.vue'
 import CopySupport from '@/components/CopySupport.vue'
 import PageHeader from '@/components/PageHeader.vue'
 
-console.debug('%c options/App.vue', 'color: Lime')
+console.debug('%cLOADED options/App.vue', 'color: Orange')
 
 useTitle(i18n.t('options.title'))
 </script>
