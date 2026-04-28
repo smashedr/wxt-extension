@@ -1,0 +1,69 @@
+name: "Test"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: "Test"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: ${{ !contains(github.event.head_commit.message, '#notest') }}
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+
+      - name: "Setup Node 24"
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: "Install"
+        id: install
+        run: npm ci
+
+      - name: "Build"
+        if: ${{ !cancelled() }}
+        run: npm run build
+
+      - name: "Cache Playwright"
+        id: cache
+        uses: actions/cache@v5
+        with:
+          path: "/home/runner/.cache/ms-playwright"
+          key: "playwright-${{ runner.os }}"
+
+      - name: "Install Playwright"
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium --with-deps
+
+      - name: "Debug Playwright"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          ls -lAh "/home/runner/.cache/ms-playwright"
+
+      - name: "Test"
+        if: ${{ !cancelled() }}
+        run: npm run test
+
+      - name: "Debug"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          ls -lAhR tests
+
+      - name: "Summary"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          results="$(jq . tests/results/.last-run.json)"
+          markdown="# Playwright Test Results\n\n"
+          markdown+="\`\`\`json\n${results}\n\`\`\`\n\n"
+          markdown+="---\n\n"
+          echo -e "${markdown}" >> "$GITHUB_STEP_SUMMARY"
