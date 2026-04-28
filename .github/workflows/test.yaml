@@ -37,3 +37,19 @@ jobs:
       - name: "Test"
         if: ${{ !cancelled() }}
         run: npm run test
+
+      - name: "Debug"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          ls -lAhR tests
+
+      - name: "Summary"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          results="$(jq . tests/results/.last-test.json)"
+          markdown="# Playwright Test Results\n\n"
+          markdown+="\`\`\`json\n${results}\`\`\`\n\n"
+          markdown+="---\n\n"
+          echo -e "${markdown}" >> "$GITHUB_STEP_SUMMARY"
