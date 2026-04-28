@@ -7,6 +7,9 @@ on:
   pull_request:
     branches: [master]
 
+env:
+  PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright
+
 jobs:
   test:
     name: "Test"
@@ -35,7 +38,8 @@ jobs:
         id: cache
         uses: actions/cache@v5
         with:
-          path: ".cache/ms-playwright"
+          #path: "/home/runner/.cache/ms-playwright/"
+          path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
           key: "playwright-${{ runner.os }}"
 
       - name: "Install Playwright"
@@ -46,8 +50,8 @@ jobs:
         if: ${{ !cancelled() }}
         continue-on-error: true
         run: |
-          ls -lAh .cache
-          ls -lAh .cache/ms-playwright
+          echo "${PLAYWRIGHT_BROWSERS_PATH}"
+          ls -lAh "${PLAYWRIGHT_BROWSERS_PATH}"
 
       - name: "Test"
         if: ${{ !cancelled() }}
