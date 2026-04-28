@@ -10,15 +10,6 @@ body:
       value: |
         All issues will be responded too.
 
-  - type: input
-    id: website
-    validations:
-      required: false
-    attributes:
-      label: Site Link
-      description: Please provide a link to the site you are having issues on if possible.
-      placeholder: https://example.com/
-
   - type: textarea
     id: description
     validations:
@@ -37,6 +28,14 @@ body:
       description: Paste any relevant logs or output in this box.
       placeholder: Output is automatically wrapped in a code block.
       render: shell
+
+  - type: input
+    id: website
+    validations:
+      required: false
+    attributes:
+      label: URL
+      description: If applicable, please provide a link to the website, repository, or workflow.
 
   - type: markdown
     attributes:
