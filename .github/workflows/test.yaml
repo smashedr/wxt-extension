@@ -4,8 +4,15 @@ on:
   workflow_dispatch:
   push:
     branches: [master]
+    paths: &paths
+      - ".github/workflows/test.yaml"
+      - "tests/**"
+      - "src/**"
+      - "package*.json"
+      - "wxt.config.ts"
   pull_request:
     branches: [master]
+    paths: *paths
 
 jobs:
   test:
