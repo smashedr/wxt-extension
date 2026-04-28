@@ -31,8 +31,23 @@ jobs:
         if: ${{ !cancelled() }}
         run: npm run build
 
-      - name: Install Playwright
+      - name: "Cache Playwright"
+        id: cache
+        uses: actions/cache@v5
+        with:
+          path: ".cache/ms-playwright"
+          key: "playwright-${{ runner.os }}"
+
+      - name: "Install Playwright"
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium --with-deps
+
+      - name: "Debug Playwright"
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          ls -lAh .cache
+          ls -lAh .cache/ms-playwright
 
       - name: "Test"
         if: ${{ !cancelled() }}
