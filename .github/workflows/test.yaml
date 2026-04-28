@@ -64,6 +64,6 @@ jobs:
         run: |
           results="$(jq . tests/results/.last-run.json)"
           markdown="# Playwright Test Results\n\n"
-          markdown+="\`\`\`json\n${results}\`\`\`\n\n"
+          markdown+="\`\`\`json\n${results}\n\`\`\`\n\n"
           markdown+="---\n\n"
           echo -e "${markdown}" >> "$GITHUB_STEP_SUMMARY"
