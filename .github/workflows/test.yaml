@@ -48,7 +48,7 @@ jobs:
         if: ${{ !cancelled() }}
         continue-on-error: true
         run: |
-          results="$(jq . tests/results/.last-test.json)"
+          results="$(jq . tests/results/.last-run.json)"
           markdown="# Playwright Test Results\n\n"
           markdown+="\`\`\`json\n${results}\`\`\`\n\n"
           markdown+="---\n\n"
