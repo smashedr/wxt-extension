@@ -76,8 +76,8 @@ function onChanged(changes: Record<string, chrome.storage.StorageChange>) {
 
 function onMessage(
   message: any,
-  _sender: chrome.runtime.MessageSender,
-  _sendResponse: Function,
+  _sender: chrome.runtime.MessageSender, // eslint-disable-line
+  _sendResponse: Function, // eslint-disable-line
 ) {
   console.log('onMessage:', message)
   if (message === 'openPopup') {
