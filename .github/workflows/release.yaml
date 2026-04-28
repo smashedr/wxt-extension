@@ -24,7 +24,7 @@ jobs:
   release:
     name: "Release"
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     needs: [build]
 
     permissions:
@@ -57,7 +57,7 @@ jobs:
 #    # https://developer.chrome.com/docs/webstore/using-api
 #    name: "Publish Chrome"
 #    runs-on: ubuntu-latest
-#    timeout-minutes: 30
+#    timeout-minutes: 15
 #    needs: [build]
 #
 #    environment:
