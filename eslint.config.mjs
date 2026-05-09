@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'eslint/config'
-import { includeIgnoreFile } from '@eslint/compat'
+import { includeIgnoreFile } from '@eslint/config-helpers'
 import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
@@ -8,6 +8,7 @@ import pluginVue from 'eslint-plugin-vue'
 
 const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url))
 
+// noinspection JSCheckFunctionSignatures
 export default defineConfig([
   js.configs.recommended,
   tseslint.configs.recommended,
