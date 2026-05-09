@@ -1,12 +1,36 @@
 import { getAppConfig } from '#imports'
 import { isFirefox } from '@/utils/system.ts'
+import { debug } from '@/utils/logger.ts'
 import { defineBackground } from 'wxt/utils/define-background'
 import { openExtPanel, openPopup, openSidePanel } from '@/utils/extension.ts'
 import { type Options, defaultOptions, getOptions } from '@/utils/options.ts'
 import { updateContextMenus } from './menus.ts'
 
+const config = getAppConfig()
+const banner = `%c    __     __
+   /  |   |  \\   %c${config.name}%c
+ __|   '-'   |__   %cv${config.version}%c
+/               \\
+\\__           __/
+   |   .-.   |
+   \\__|   |__/
+%c${config.homepageUrl}`
+
 export default defineBackground(() => {
-  console.log(`Loaded: %c${chrome.runtime.id}`, 'Color: Cyan')
+  // console.log(`Loaded: %c${chrome.runtime.id}`, 'Color: Cyan')
+  console.log(
+    banner,
+    'color: MediumSeaGreen',
+    'color: LightGreen',
+    'color: MediumSeaGreen',
+    'color: SteelBlue',
+    'color: MediumSeaGreen',
+    'color: MediumSlateBlue',
+  )
+
+  if (import.meta.env.DEV) {
+    console.log('%c --- DEV MODE ENABLED ---', 'color: Tomato')
+  }
 
   chrome.runtime.onInstalled.addListener(onInstalled)
   chrome.runtime.onStartup.addListener(onStartup)
@@ -20,19 +44,19 @@ async function onInstalled(details: chrome.runtime.InstalledDetails) {
   console.log('onInstalled:', details)
 
   const options = await setDefaultOptions(defaultOptions)
-  console.debug('options:', options)
+  debug('options:', options)
   updateContextMenus(options.contextMenu).catch(console.warn)
   setUninstall().catch(console.warn)
 
   const manifest = chrome.runtime.getManifest()
-  console.debug('manifest:', manifest)
+  debug('manifest:', manifest)
 
   if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
     // NOTE: origins are also defined in components/PermsCheck.vue
     const hasPerms = await chrome.permissions.contains({
       origins: manifest.host_permissions,
     })
-    console.debug('hasPerms:', hasPerms)
+    debug('hasPerms:', hasPerms)
     if (hasPerms) {
       await chrome.runtime.openOptionsPage()
     } else {
@@ -48,24 +72,24 @@ async function onInstalled(details: chrome.runtime.InstalledDetails) {
 }
 
 async function onStartup() {
-  console.log('onStartup')
+  debug('onStartup')
   if (isFirefox) {
-    console.log('Firefox Startup Workarounds')
+    debug('Firefox Startup Workarounds')
     // NOTE: Confirm these checks are still necessary...
     const options = await getOptions()
-    console.debug('options:', options)
+    debug('options:', options)
     updateContextMenus(options.contextMenu).catch(console.warn)
     setUninstall().catch(console.warn)
   }
 }
 
 function onChanged(changes: Record<string, chrome.storage.StorageChange>) {
-  // console.log('%c background/index.ts - onChanged:', 'color: Cyan', changes)
+  // debug('background/index.ts - onChanged:', changes)
   if (changes?.options) {
     const oldValue = changes.options?.oldValue as Options | undefined
     const newValue = changes.options?.newValue as Options | undefined
-    // if (!oldValue || !newValue) return console.log('missing oldValue or newValue')
-    if (!oldValue) return console.log('onChanged: missing options oldValue')
+    // if (!oldValue || !newValue) return debug('missing oldValue or newValue')
+    if (!oldValue) return debug('onChanged: missing options oldValue')
     if (!newValue) return console.warn('onChanged: missing options newValue')
 
     if (oldValue?.contextMenu !== newValue.contextMenu) {
@@ -79,14 +103,14 @@ function onMessage(
   _sender: chrome.runtime.MessageSender, // eslint-disable-line
   _sendResponse: Function, // eslint-disable-line
 ) {
-  console.log('onMessage:', message)
+  debug('onMessage:', message)
   if (message === 'openPopup') {
     openPopup().catch((e) => console.log(e))
   }
 }
 
 async function onCommand(command: string, tab?: chrome.tabs.Tab) {
-  console.debug('onCommand:', command, tab)
+  debug('onCommand:', command, tab)
   if (command === 'openOptions') {
     await chrome.runtime.openOptionsPage()
   } else if (command === 'openExtPanel') {
@@ -99,7 +123,7 @@ async function onCommand(command: string, tab?: chrome.tabs.Tab) {
 }
 
 async function onClicked(ctx: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) {
-  console.debug('onClicked:', ctx, tab)
+  debug('onClicked:', ctx, tab)
   if (ctx.menuItemId === 'openOptions') {
     await chrome.runtime.openOptionsPage()
   } else if (ctx.menuItemId === 'openPopup') {
@@ -114,30 +138,29 @@ async function onClicked(ctx: chrome.contextMenus.OnClickData, tab?: chrome.tabs
 }
 
 async function setDefaultOptions(defaultOptions: object) {
-  console.log('setDefaultOptions', defaultOptions)
+  debug('setDefaultOptions', defaultOptions)
   const options = await getOptions()
   let changed = false
   for (const [key, value] of Object.entries(defaultOptions)) {
-    // console.log(`${key}: default: ${value} current: ${options[key]}`)
+    // debug(`${key}: default: ${value} current: ${options[key]}`)
     if (options[key] === undefined) {
       changed = true
       options[key] = value
-      console.log(`Set %c${key}:`, 'color: Khaki', value)
+      debug(`Set ${key}:`, value)
     }
   }
   if (changed) {
     await chrome.storage.sync.set({ options })
-    console.log('changed options:', options)
+    debug('changed options:', options)
   }
   return options
 }
 
 async function setUninstall() {
   // NOTE: Calling this setUninstallURL and using getAppConfig breaks WXT
-  const config = getAppConfig()
   const url = new URL(config.uninstallUrl)
   url.searchParams.append('version', config.version)
   url.searchParams.append('id', chrome.runtime.id)
-  console.log('setUninstallURL:', url.href)
+  debug('setUninstallURL:', url.href)
   await chrome.runtime.setUninstallURL(url.href)
 }
