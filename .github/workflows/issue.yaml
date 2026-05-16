@@ -22,8 +22,8 @@ jobs:
         with:
           app-id: 146360
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: "cssnr"
-          repositories: "webstore-publish-action"
+          owner: "smashedr"
+          repositories: "wxt-extension"
 
       - name: "AI Issue"
         uses: smashedr/ai-issue-action@master
