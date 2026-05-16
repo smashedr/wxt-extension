@@ -17,7 +17,7 @@ export default defineConfig([
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
-      'no-undef': 'off',
+      'no-undef': 'off', // needed for auto-imports
     },
     languageOptions: {
       sourceType: 'module',
@@ -26,6 +26,7 @@ export default defineConfig([
       },
       // globals: {
       //   ...globals.browser,
+      //   ...globals.webextensions,
       // },
     },
   },

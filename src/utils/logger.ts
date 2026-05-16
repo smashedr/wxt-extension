@@ -1,9 +1,7 @@
-// export const debug = import.meta.env.DEV ? console.log.bind(console) : () => {}
+export const debug = import.meta.env.DEV ? console.log.bind(console) : () => {}
+// export const debug = console.log.bind(console)
 
-// NOTE: To prepend log locations we can't use %c formatting strings...
-export const debug = import.meta.env.DEV ? console.log.bind(console, '[debug]') : () => {}
-
-// NOTE: To prepend [debug] and preserver formatting the 1st argument must be a string
+// // NOTE: To prepend [debug] and preserver formatting you can't bind...
 // export const debug = import.meta.env.DEV
 //   ? (tag: string, ...data: any) => console.log('[debug] ' + tag, ...data)
 //   : () => {}
