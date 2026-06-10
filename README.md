@@ -29,7 +29,7 @@
 - [Support](#support)
 - [Contributing](#contributing)
 
-WXT Vue3 Starter Template.
+WXT Vue3 Bootstrap Starter Template.
 
 ## Install
 
@@ -114,6 +114,8 @@ Other Web Extensions I have created and published:
 - [ASN Plus](https://github.com/cssnr/asn-plus?tab=readme-ov-file#readme)
 - [Aviation Tools](https://github.com/cssnr/aviation-tools?tab=readme-ov-file#readme)
 - [Text Formatter](https://github.com/cssnr/text-formatter?tab=readme-ov-file#readme)
+- [GeoImage](https://github.com/cssnr/geo-image?tab=readme-ov-file#readme)
+- [New Tab](https://github.com/cssnr/new-tab?tab=readme-ov-file#readme)
 
 For a full list of current projects visit: [https://cssnr.github.io/](https://cssnr.github.io/)
 
