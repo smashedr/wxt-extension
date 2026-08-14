@@ -26,7 +26,10 @@ export const test = base.extend<{
     if (!serviceWorker) serviceWorker = await context.waitForEvent('serviceworker')
     console.log('serviceWorker:', serviceWorker?.url())
 
-    const extensionId = serviceWorker.url().split('/')[2]
+    const swUrl = serviceWorker.url()
+    if (!swUrl) throw new Error('Service worker URL is undefined')
+    const extensionId = swUrl.split('/')[2]
+    if (!extensionId) throw new Error('Could not parse extension ID from service worker URL')
     console.log('extensionId:', extensionId)
     await use(extensionId)
   },
