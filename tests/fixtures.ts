@@ -29,7 +29,8 @@ export const test = base.extend<{
     const swUrl = serviceWorker.url()
     if (!swUrl) throw new Error('Service worker URL is undefined')
     const extensionId = swUrl.split('/')[2]
-    if (!extensionId) throw new Error('Could not parse extension ID from service worker URL')
+    if (!extensionId)
+      throw new Error('Could not parse extension ID from service worker URL')
     console.log('extensionId:', extensionId)
     await use(extensionId)
   },
